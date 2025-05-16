@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 1</title>
+  <style>
+    html, body { margin:0; padding:0; overflow:hidden; height:100%; width:100%; background:#000; }
+    #container {
+      width:1280px; height:720px;
+      transform-origin:0 0;
+      position:absolute;
+    }
+    #viewer {
+      width:1280px; height:720px;
+      border:none;
+      display:block;
+    }
+    .nav {
+      position:fixed; top:50%; width:50px; height:50px;
+      background:rgba(255,255,255,0.3); color:#000;
+      font-size:2rem; line-height:50px; text-align:center;
+      cursor:pointer; user-select:none;
+    }
+    #prev { left:10px; }
+    #next { right:10px; }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <iframe id="viewer" src=""></iframe>
+  </div>
+
+  <div id="prev" class="nav">←</div>
+  <div id="next" class="nav">→</div>
+
+  <script>
+    const slides = [
+      'Slide_1.html','Slide_2.html','Slide_3.html',
+      'Slide_4.html','Slide_5.html','Slide_6.html',
+      'Slide_7.html','Slide_8.html','Slide_9.html',
+      'Slide_10.html','Slide_11.html'
+    ];
+    let idx = 0;
+    const viewer = document.getElementById('viewer');
+    function showSlide() {
+      viewer.src = slides[idx];
+    }
+    document.getElementById('prev').onclick = () => {
+      idx = (idx - 1 + slides.length) % slides.length;
+      showSlide();
+    };
+    document.getElementById('next').onclick = () => {
+      idx = (idx + 1) % slides.length;
+      showSlide();
+    };
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  document.getElementById('prev').click();
+      if (e.key === 'ArrowRight') document.getElementById('next').click();
+    });
+    // ----------- 동적 리사이즈 -----------
+    const container = document.getElementById('container');
+    function resize() {
+      const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+      container.style.transform = `scale(${scale})`;
+      // 중앙정렬
+      const cw = 1280 * scale, ch = 720 * scale;
+      container.style.left = (window.innerWidth - cw) / 2 + 'px';
+      container.style.top  = (window.innerHeight - ch) / 2 + 'px';
+    }
+    window.addEventListener('resize', resize);
+    window.onload = () => { resize(); showSlide(); };
+  </script>
+
+</body>
+</html>

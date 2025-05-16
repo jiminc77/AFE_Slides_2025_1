@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전자공학의 혁신과 발전</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1c3c78, #173057);
+            color: white;
+        }
+        /* — slide-content 패딩·높이 조정 */
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px 50px;   /* 50px 70px → 30px 50px */
+            height: 580px;        /* 620px → 580px */
+        }
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .circuit-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255: 255, 0.3);
+        }
+        .title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;   /* 1.5rem → 1rem */
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+        .title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #5d9fff;
+        }
+        .timeline {
+            position: relative;
+            margin-top: 20px;      /* 30px → 20px */
+            margin-bottom: 20px;   /* 40px → 20px */
+            padding-bottom: 20px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15px;
+            height: 4px;
+            width: 100%;
+            background: rgba(93, 159, 255, 0.3);
+            z-index: 1;
+        }
+        .timeline-item {
+            position: relative;
+            padding-top: 40px;
+            z-index: 2;
+        }
+        .timeline-dot {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #5d9fff;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            box-shadow: 0 0 10px rgba(93, 159, 255, 0.7);
+        }
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .timeline-year {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #5d9fff;
+            margin-bottom: 5px;
+        }
+        .timeline-text {
+            font-size: 0.9rem;
+            color: #bdd1ff;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;        /* 30px → 20px */
+        }
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;         /* 20px → 15px */
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .feature-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .feature-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-icon {
+            font-size: 1.8rem;
+            color: #5d9fff;
+            margin-right: 10px;
+        }
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;        /* 15px → 10px */
+        }
+        .tech-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(93, 159, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        .tech-icon i {
+            color: #7eb3ff;
+            font-size: 1.2rem;
+        }
+        .tech-text {
+            font-size: 0.9rem;
+            color: #bdd1ff;
+        }
+        .miniaturization-chart {
+            width: 100%;
+            height: 200px;         /* 250px → 200px */
+        }
+        /* — 하단 인용문 위 여백 축소 */
+        .mt-6 {
+            margin-top: 1rem !important;  /* ≈24px → ≈16px */
+        }
+        .logo {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="circuit-bg">
+            <div class="circuit-line" style="height:2px; width:300px; top:100px; left:50px;"></div>
+            <div class="circuit-line" style="height:2px; width:200px; top:200px; right:100px;"></div>
+            <div class="circuit-line" style="height:2px; width:400px; bottom:150px; left:300px;"></div>
+            <div class="circuit-line" style="width:2px; height:200px; top:100px; left:350px;"></div>
+            <div class="circuit-line" style="width:2px; height:300px; top:200px; right:100px;"></div>
+            <div class="circuit-line" style="width:2px; height:150px; bottom:150px; left:700px;"></div>
+            <div class="circuit-dot" style="width:8px; height:8px; top:100px; left:50px;"></div>
+            <div class="circuit-dot" style="width:8px; height:8px; top:100px; left:350px;"></div>
+            <div class="circuit-dot" style="width:8px; height:8px; top:200px; right:100px;"></div>
+            <div class="circuit-dot" style="width:8px; height:8px; bottom:150px; left:300px;"></div>
+            <div class="circuit-dot" style="width:8px; height:8px; bottom:150px; left:700px;"></div>
+        </div>
+        <div class="slide-content">
+            <h1 class="title">전자공학의 혁신과 발전</h1>
+            <div class="timeline">
+                <div class="flex justify-between">
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1864</div>
+                            <div class="timeline-text">맥스웰<br>전자기학과 전파 발견</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1905</div>
+                            <div class="timeline-text">아인슈타인<br>상대성이론, 광양자가설</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1946</div>
+                            <div class="timeline-text">에니악(ENIAC)<br>최초의 전자식 컴퓨터</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1947</div>
+                            <div class="timeline-text">트랜지스터 발명<br>벨연구소</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1970s</div>
+                            <div class="timeline-text">개인용 컴퓨터<br>디지털 시대 시작</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="width:16%;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000s</div>
+                            <div class="timeline-text">모바일 혁명<br>스마트폰, 사물인터넷</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <div class="feature-title">
+                        <div class="feature-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                        축소 (Miniaturization)
+                    </div>
+                    <div class="miniaturization-chart">
+                        <canvas id="sizeChart"></canvas>
+                    </div>
+                    <div class="text-center text-sm mt-3 text-blue-200">
+                        컴퓨터 크기 변화: ENIAC(1946) → 데스크톱 → 노트북 → 스마트폰
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-title">
+                        <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+                        연결 (Connection)
+                    </div>
+                    <div class="feature-content">
+                        <div class="tech-item">
+                            <div class="tech-icon"><i class="fas fa-car"></i></div>
+                            <div class="tech-text">
+                                <strong>자율주행 자동차</strong><br>
+                                기계식 → 전기·전자식 → 자율주행
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="tech-text">
+                                <strong>스마트 모바일</strong><br>
+                                연결성 확장, 다목적 기기화
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="tech-text">
+                                <strong>웨어러블 기술</strong><br>
+                                인체와 기계의 직접 통신
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon"><i class="fas fa-home"></i></div>
+                            <div class="tech-text">
+                                <strong>사물인터넷(IoT)</strong><br>
+                                일상 물건에 '생명력' 부여
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('sizeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1946', '1970s', '1990s', '2010s'],
+                    datasets: [{
+                        label: '크기 (m²)',
+                        data: [170, 1.5, 0.2, 0.01],
+                        backgroundColor: 'rgba(93, 159, 255, 0.2)',
+                        borderColor: 'rgba(93, 159, 255, 1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#5d9fff',
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                callback: function(value) {
+                                    if (value === 0) return '0';
+                                    if (value === 50) return '50 m²';
+                                    if (value === 100) return '100 m²';
+                                    if (value === 150) return '150 m²';
+                                    return value;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(ctx) {
+                                    return ctx.dataset.label + ': ' + ctx.parsed.y + ' m²';
+                                },
+                                title: function(items) {
+                                    const titles = {
+                                        '1946': 'ENIAC (첫 전자식 컴퓨터)',
+                                        '1970s': '초기 데스크톱 컴퓨터',
+                                        '1990s': '노트북 컴퓨터',
+                                        '2010s': '스마트폰'
+                                    };
+                                    return titles[items[0].label];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

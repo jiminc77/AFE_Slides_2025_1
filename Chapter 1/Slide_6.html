@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인체와 기계의 연결</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1c3c78, #173057);
+            color: white;
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            padding: 50px 70px;
+            height: 620px;
+        }
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .circuit-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+        .title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #5d9fff;
+        }
+        .tech-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+            margin-top: 20px;
+        }
+        .tech-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        .tech-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .tech-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #5d9fff;
+            display: flex;
+            align-items: center;
+        }
+        .tech-icon {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            background: rgba(93, 159, 255, 0.2);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .application-box {
+            display: flex;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .application-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .application-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #5d9fff;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .application-content {
+            flex: 1;
+        }
+        .application-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        .application-desc {
+            font-size: 0.85rem;
+            color: #bdd1ff;
+            line-height: 1.4;
+        }
+        .innovation-container {
+            margin-top: 30px;
+            position: relative;
+        }
+        .innovation-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .innovation-timeline {
+            position: relative;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        .innovation-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(93, 159, 255, 0.3);
+            transform: translateY(-50%);
+        }
+        .innovation-item {
+            position: absolute;
+            width: 200px;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .innovation-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #5d9fff;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+        .innovation-dot:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .innovation-year {
+            font-weight: 700;
+            color: #5d9fff;
+            margin-bottom: 5px;
+        }
+        .innovation-text {
+            font-size: 0.85rem;
+            color: #bdd1ff;
+        }
+        .pulse-chart {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+        }
+        .human-machine-interface {
+            background: rgba(93, 159, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .interface-title {
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .interface-desc {
+            font-size: 0.9rem;
+            color: #bdd1ff;
+            line-height: 1.5;
+        }
+        .logo {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background Animation Elements -->
+        <div class="circuit-bg">
+            <!-- Horizontal lines -->
+            <div class="circuit-line" style="height: 2px; width: 300px; top: 100px; left: 50px;"></div>
+            <div class="circuit-line" style="height: 2px; width: 200px; top: 200px; right: 100px;"></div>
+            <div class="circuit-line" style="height: 2px; width: 400px; bottom: 150px; left: 300px;"></div>
+            
+            <!-- Vertical lines -->
+            <div class="circuit-line" style="width: 2px; height: 200px; top: 100px; left: 350px;"></div>
+            <div class="circuit-line" style="width: 2px; height: 300px; top: 200px; right: 100px;"></div>
+            <div class="circuit-line" style="width: 2px; height: 150px; bottom: 150px; left: 700px;"></div>
+            
+            <!-- Dots -->
+            <div class="circuit-dot" style="width: 8px; height: 8px; top: 100px; left: 50px;"></div>
+            <div class="circuit-dot" style="width: 8px; height: 8px; top: 100px; left: 350px;"></div>
+            <div class="circuit-dot" style="width: 8px; height: 8px; top: 200px; right: 100px;"></div>
+            <div class="circuit-dot" style="width: 8px; height: 8px; bottom: 150px; left: 300px;"></div>
+            <div class="circuit-dot" style="width: 8px; height: 8px; bottom: 150px; left: 700px;"></div>
+        </div>
+
+        <!-- Slide Content -->
+        <div class="slide-content">
+            <h1 class="title">인체와 기계의 연결</h1>
+            
+            <div class="tech-container">
+                <!-- 웨어러블 기술 -->
+                <div class="tech-box">
+                    <div class="tech-title">
+                        <div class="tech-icon"><i class="fas fa-heartbeat"></i></div>
+                        웨어러블 기술
+                    </div>
+                    <div class="application-box">
+                        <div class="application-icon"><i class="fas fa-tshirt"></i></div>
+                        <div class="application-content">
+                            <div class="application-title">스마트 웨어러블 센서</div>
+                            <div class="application-desc">온도, 유해가스, 미세먼지, 자외선 등 환경 감지 및 심전도, 근전도, 혈당 등 생체신호 모니터링</div>
+                        </div>
+                    </div>
+                    <div class="application-box">
+                        <div class="application-icon"><i class="fas fa-hospital-user"></i></div>
+                        <div class="application-content">
+                            <div class="application-title">원격 의료 시스템</div>
+                            <div class="application-desc">부정맥, 당뇨 등 실시간 모니터링을 통한 의료진 연결, 시간과 장소에 구애받지 않는 건강 관리</div>
+                        </div>
+                    </div>
+                    <div class="pulse-chart">
+                        <canvas id="pulseChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 바이오 전자소자 -->
+                <div class="tech-box">
+                    <div class="tech-title">
+                        <div class="tech-icon"><i class="fas fa-microchip"></i></div>
+                        바이오 전자소자
+                    </div>
+                    <div class="application-box">
+                        <div class="application-icon"><i class="fas fa-brain"></i></div>
+                        <div class="application-content">
+                            <div class="application-title">뇌-기계 인터페이스</div>
+                            <div class="application-desc">뇌 신경에 부착된 전자소자가 신호를 감지하여 무선으로 데이터 전송, 뇌압 모니터링에 활용</div>
+                        </div>
+                    </div>
+                    <div class="application-box">
+                        <div class="application-icon"><i class="fas fa-walking"></i></div>
+                        <div class="application-content">
+                            <div class="application-title">척수 손상 치료 기술</div>
+                            <div class="application-desc">척수가 손상된 환자의 뇌와 다리 근육 사이에 전자 칩을 부착, 무선으로 신호를 전달해 움직임 회복</div>
+                        </div>
+                    </div>
+                    <div class="application-box">
+                        <div class="application-icon"><i class="fas fa-heartbeat"></i></div>
+                        <div class="application-content">
+                            <div class="application-title">생체 이식형 소자</div>
+                            <div class="application-desc">생체 적합성 재료로 제작된 전자소자가 몸 속에서 녹아 흡수되는 기술, 수술 부담 경감</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 혁신 타임라인 -->
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 생체 신호 차트
+            const ctx = document.getElementById('pulseChart').getContext('2d');
+            const pulseChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        label: '생체신호',
+                        data: [60, 62, 65, 68, 90, 110, 100, 80, 60, 55, 60, 62, 65, 68, 90, 110, 100, 80, 60, 55],
+                        backgroundColor: 'rgba(93, 159, 255, 0.2)',
+                        borderColor: 'rgba(93, 159, 255, 1)',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            display: false,
+                            beginAtZero: false
+                        },
+                        x: {
+                            display: false
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    elements: {
+                        line: {
+                            tension: 0.4
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

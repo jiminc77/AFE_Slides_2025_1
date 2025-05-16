@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 헬스케어의 이해</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0; padding: 0; overflow: hidden;
+        }
+        .slide {
+            width: 1280px; min-height: 720px; overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1c3c78, #173057);
+            color: white;
+        }
+        /* slide-content 여백·높이 줄임 */
+        .slide-content {
+            position: relative; z-index: 2;
+            padding: 30px 50px;   /* 50px 70px → 30px 50px */
+            height: 580px;        /* 620px → 580px */
+        }
+        .medical-bg {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 1;
+            opacity: 0.1;
+        }
+        .medical-icon {
+            position: absolute;
+            color: rgba(255,255,255,0.2);
+        }
+        .title {
+            font-weight: 800; font-size: 2.5rem;
+            margin-bottom: 1rem;  /* 1.5rem → 1rem */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative; display: inline-block;
+        }
+        .title:after {
+            content: ""; position: absolute;
+            bottom: -10px; left: 0;
+            width: 80px; height: 4px; background: #5d9fff;
+        }
+        /* 헬스케어 컨테이너 간격 줄임 */
+        .healthcare-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;    /* 30px → 20px */
+            margin-top: 15px;  /* 20px → 15px */
+        }
+        .healthcare-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;      /* 20px → 15px */
+            transition: .3s; height: 100%;
+        }
+        .healthcare-title {
+            font-size: 1.5rem; font-weight: 700;
+            margin-bottom: 10px; /* 15px → 10px */
+            color: #5d9fff;
+            display: flex; align-items: center;
+        }
+        .healthcare-icon {
+            font-size: 1.8rem; margin-right: 10px;
+            background: rgba(93,159,255,0.2);
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        /* feature-box 간격·패딩 좁힘 */
+        .feature-box {
+            display: flex; margin-bottom: 8px; /* 10px → 8px */
+            padding: 10px;                    /* 12px → 10px */
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px; transition: .3s;
+        }
+        .feature-box:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .feature-icon {
+            font-size: 1.5rem; margin-right: 12px; /* 15px → 12px */
+            color: #5d9fff; width: 40px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .feature-content { flex: 1; }
+        .feature-title {
+            font-weight: 700; margin-bottom: 4px; /* 5px → 4px */
+            color: #ffffff;
+        }
+        .feature-desc {
+            font-size: 0.85rem; color: #bdd1ff;
+            line-height: 1.4;
+        }
+        /* 차트 크기·여백 줄임 */
+        .chart-container {
+            width: 100%;
+            height: 140px;   /* 160px → 140px */
+            margin-top: 10px;/* 15px → 10px */
+        }
+        /* 비교 컨테이너 여백·패딩 축소 */
+        .comparison-container {
+            margin-top: 20px; /* 30px → 20px */
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;    /* 20px → 15px */
+        }
+        .comparison-title {
+            font-size: 1.4rem; font-weight: 700;
+            margin-bottom: 10px; /* 15px → 10px */
+            color: #ffffff;
+            text-align: center;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px;   /* 20px → 15px */
+        }
+        .comparison-col { text-align: center; }
+        .comparison-header {
+            font-weight: 700; color: #5d9fff;
+            margin-bottom: 8px; /* 10px → 8px */
+            font-size: 1.2rem;
+        }
+        .comparison-item {
+            background: rgba(255,255,255,0.05);
+            padding: 8px;      /* 10px → 8px */
+            margin-bottom: 6px;/* 10px → 6px */
+            border-radius: 8px;
+            font-size: 0.9rem; color: #bdd1ff;
+        }
+        /* 센서 그리드 간격 줄임 */
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-gap: 8px;     /* 10px → 8px */
+            margin-top: 10px;  /* 15px → 10px */
+        }
+        .sensor-item {
+            padding: 8px;      /* 10px → 8px */
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-align: center;
+            display: flex; flex-direction: column; align-items: center;
+            transition: .3s;
+        }
+        .sensor-item:hover { background: rgba(255,255,255,0.1); }
+        .sensor-icon { font-size: 1.3rem; color: #5d9fff; margin-bottom: 4px; }
+        .sensor-name {
+            font-size: 0.8rem; color: #ffffff; font-weight: 500;
+        }
+        .logo {
+            position: absolute; bottom: 30px; right: 30px; width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background Medical Elements -->
+        <div class="medical-bg">
+            <i class="medical-icon fas fa-heartbeat" style="font-size:40px; top:120px; left:100px;"></i>
+            <i class="medical-icon fas fa-dna" style="font-size:50px; top:80px; right:150px;"></i>
+            <i class="medical-icon fas fa-tablets" style="font-size:35px; bottom:160px; left:200px;"></i>
+            <i class="medical-icon fas fa-microscope" style="font-size:45px; bottom:120px; right:230px;"></i>
+            <i class="medical-icon fas fa-briefcase-medical" style="font-size:38px; top:280px; left:500px;"></i>
+            <i class="medical-icon fas fa-brain" style="font-size:42px; top:330px; right:400px;"></i>
+        </div>
+        <div class="slide-content">
+            <h1 class="title">스마트 헬스케어의 이해</h1>
+            <div class="healthcare-container">
+                <!-- 질병 진단 방식의 혁신 -->
+                <div class="healthcare-box">
+                    <div class="healthcare-title">
+                        <div class="healthcare-icon"><i class="fas fa-stethoscope"></i></div>
+                        질병 진단 방식의 혁신
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">유비쿼터스 헬스케어</div>
+                            <div class="feature-desc">시간과 장소에 구애받지 않는 실시간 건강 모니터링. 초기 질병 신호를 신속하게 감지하여 예방 중심의 의료 패러다임 전환</div>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">진단용 마이크로칩</div>
+                            <div class="feature-desc">질병 상태에서 발생하는 미약한 생체신호를 감지하고 분석. 초기 질병 상태의 생체지표 물질을 실시간으로 검출</div>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">데이터 기반 분석</div>
+                            <div class="feature-desc">축적된 생체데이터를 AI로 분석하여 환자 맞춤형 진단. 건강 패턴과 이상징후를 조기에 포착하여 예방적 치료 제공</div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="diagnosisChart"></canvas>
+                    </div>
+                </div>
+                <!-- 생체신호 모니터링 센서 -->
+                <div class="healthcare-box">
+                    <div class="healthcare-title">
+                        <div class="healthcare-icon"><i class="fas fa-heartbeat"></i></div>
+                        생체신호 모니터링 센서
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">무선 센서 네트워크</div>
+                            <div class="feature-desc">다양한 생체신호 센서가 무선으로 연결되어 정보 수집. 인체 부착형 및 주변 환경 모니터링을 통한 통합적 건강 관리 실현</div>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">정밀 측정 기술</div>
+                            <div class="feature-desc">초소형 고감도 센서로 미세한 생체신호 변화를 정확히 포착. 기존에 병원에서만 가능했던 정밀 진단을 일상에서 구현</div>
+                        </div>
+                    </div>
+                    <div class="sensor-grid">
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-heartbeat"></i></div>
+                            <div class="sensor-name">심전도</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-tint"></i></div>
+                            <div class="sensor-name">혈당</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-lungs"></i></div>
+                            <div class="sensor-name">호흡</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-thermometer-half"></i></div>
+                            <div class="sensor-name">체온</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-walking"></i></div>
+                            <div class="sensor-name">활동량</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-brain"></i></div>
+                            <div class="sensor-name">뇌파</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 기존 의료와 스마트 헬스케어 비교 -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('diagnosisChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['조기 발견률','진단 정확도','대응 시간','치료 효과'],
+                    datasets: [{
+                        label: '기존 진단',
+                        data: [30,65,120,50],
+                        backgroundColor: 'rgba(255,255,255,0.3)',
+                        borderColor: 'rgba(255,255,255,0.5)',
+                        borderWidth: 1, borderRadius: 5
+                    },{
+                        label: '스마트 헬스케어',
+                        data: [75,90,15,85],
+                        backgroundColor: 'rgba(93,159,255,0.6)',
+                        borderColor: 'rgba(93,159,255,0.8)',
+                        borderWidth: 1, borderRadius: 5
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.7)', font:{ size:10 }
+                            }
+                        },
+                        x: {
+                            grid: { display:false },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.7)', font:{ size:10 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display:true, position:'top',
+                            labels:{ color:'rgba(255,255,255,0.7)', font:{ size:10 }, boxWidth:10 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 약물 전달 시스템</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1c3c78, #173057);
+            color: white;
+        }
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            padding: 50px 70px;
+            height: 620px;
+        }
+        .medical-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        .medical-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+        .title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #5d9fff;
+        }
+        .drug-delivery-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 25px;
+            margin-top: 20px;
+        }
+        .drug-delivery-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .drug-delivery-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .drug-delivery-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #5d9fff;
+            display: flex;
+            align-items: center;
+        }
+        .drug-delivery-icon {
+            font-size: 1.7rem;
+            margin-right: 10px;
+            background: rgba(93, 159, 255, 0.2);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-box {
+            display: flex;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .feature-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .feature-icon {
+            font-size: 1.3rem;
+            margin-right: 15px;
+            color: #5d9fff;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-content {
+            flex: 1;
+        }
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        .feature-desc {
+            font-size: 0.85rem;
+            color: #bdd1ff;
+            line-height: 1.4;
+        }
+        .comparison-container {
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .comparison-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+        .comparison-col {
+            text-align: center;
+        }
+        .comparison-header {
+            font-weight: 700;
+            color: #5d9fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .comparison-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #bdd1ff;
+        }
+        .drug-delivery-step {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+            background-color: #5d9fff;
+            border-radius: 50%;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-content {
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+        .nanoparticle-container {
+            margin-top: 15px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .nanoparticle-diagram {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .nano-particle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 40% 40%, #5d9fff, #173057);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(93, 159, 255, 0.6);
+        }
+        .nano-drug {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 40% 40%, #ff5d5d, #571717);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .nano-target {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border: 2px solid #5dff9f;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(1.3);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+        }
+        .microneedle-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+        .microneedle {
+            width: 45px;
+            height: 80px;
+            position: relative;
+            margin: 0 5px;
+        }
+        .needle-base {
+            width: 100%;
+            height: 30px;
+            background-color: #5d9fff;
+            border-radius: 4px 4px 0 0;
+            position: absolute;
+            bottom: 0;
+        }
+        .needle-tip {
+            width: 0;
+            height: 0;
+            border-left: 22.5px solid transparent;
+            border-right: 22.5px solid transparent;
+            border-bottom: 50px solid #5d9fff;
+            position: absolute;
+            bottom: 30px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+        }
+        .logo {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background Medical Elements -->
+        <div class="medical-bg">
+            <i class="medical-icon fas fa-capsules" style="font-size: 40px; top: 120px; left: 100px;"></i>
+            <i class="medical-icon fas fa-syringe" style="font-size: 50px; top: 80px; right: 150px;"></i>
+            <i class="medical-icon fas fa-tablets" style="font-size: 35px; bottom: 160px; left: 200px;"></i>
+            <i class="medical-icon fas fa-briefcase-medical" style="font-size: 45px; bottom: 120px; right: 230px;"></i>
+            <i class="medical-icon fas fa-pills" style="font-size: 38px; top: 280px; left: 500px;"></i>
+            <i class="medical-icon fas fa-prescription-bottle-alt" style="font-size: 42px; top: 330px; right: 400px;"></i>
+        </div>
+
+        <!-- Slide Content -->
+        <div class="slide-content">
+            <h1 class="title">스마트 약물 전달 시스템</h1>
+            
+            <div class="drug-delivery-container">
+                <!-- 표적화 약물 전달 -->
+                <div class="drug-delivery-box">
+                    <div class="drug-delivery-title">
+                        <div class="drug-delivery-icon"><i class="fas fa-bullseye"></i></div>
+                        표적화 약물 전달
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">타깃팅 기술</div>
+                            <div class="feature-desc">약물에 질병 부위의 세포와 특이적으로 결합하는 항체를 결합시켜 정상 세포에는 영향을 주지 않고 질병 세포에만 약물을 전달</div>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-atom"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">나노입자 기술</div>
+                            <div class="feature-desc">나노 크기의 입자 안에 약물을 탑재하여 원하는 부위에 정확히 전달, 특히 항암제의 부작용을 크게 감소시키는 효과</div>
+                        </div>
+                    </div>
+                    
+                    <div class="nanoparticle-container">
+                        <div class="nanoparticle-diagram">
+                            <div class="nano-particle"></div>
+                            <div class="nano-drug"></div>
+                            <div class="nano-target" style="top: 30%; left: 20%;"></div>
+                            <div class="nano-target" style="top: 65%; left: 80%;"></div>
+                            <div class="nano-target" style="top: 80%; left: 40%;"></div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #bdd1ff; margin-top: 10px;">약물 탑재 나노입자의 질병 부위 타깃팅 개념도</div>
+                    </div>
+                </div>
+                
+                <!-- 자극 반응형 약물 방출 -->
+                <div class="drug-delivery-box">
+                    <div class="drug-delivery-title">
+                        <div class="drug-delivery-icon"><i class="fas fa-magic"></i></div>
+                        자극 반응형 약물 방출
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-temperature-high"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">스마트 약물 방출</div>
+                            <div class="feature-desc">pH, 온도, 효소, 빛, 자성 등 특정 자극에 반응하여 약물이 방출되는 시스템으로 목표 부위에 정확한 시간과 양의 약물 전달</div>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-ruler-combined"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">폴리머 기반 기술</div>
+                            <div class="feature-desc">암세포 특성(고온, 낮은 pH)에 반응하여 구조가 변하는 폴리머를 사용, 암세포에서만 특이적으로 약물이 방출되도록 설계</div>
+                        </div>
+                    </div>
+                    
+                    <div class="drug-delivery-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">나노입자가 혈류를 통해 순환</div>
+                    </div>
+                    <div class="drug-delivery-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">질병 부위에서 특이적 결합</div>
+                    </div>
+                    <div class="drug-delivery-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">환경 자극(pH, 온도)에 반응해 약물 방출</div>
+                    </div>
+                    <div class="drug-delivery-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">질병 세포에만 선택적 치료 효과</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="comparison-title">통증 없는 약물 전달: 마이크로니들 패치</div>
+                
+                <div class="comparison-grid">
+                    <div>
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fas fa-band-aid"></i></div>
+                            <div class="feature-content">
+                                <div class="feature-title">생분해성 마이크로니들</div>
+                                <div class="feature-desc">수백 마이크로미터 크기의 작은 바늘이 피부에 적용되어 통증 없이 약물 전달, 바늘이 피부에서 녹아 생분해되며 약물 방출</div>
+                            </div>
+                        </div>
+                        
+                        <div class="microneedle-container">
+                            <div class="microneedle">
+                                <div class="needle-tip"></div>
+                                <div class="needle-base"></div>
+                            </div>
+                            <div class="microneedle">
+                                <div class="needle-tip"></div>
+                                <div class="needle-base"></div>
+                            </div>
+                            <div class="microneedle">
+                                <div class="needle-tip"></div>
+                                <div class="needle-base"></div>
+                            </div>
+                            <div class="microneedle">
+                                <div class="needle-tip"></div>
+                                <div class="needle-base"></div>
+                            </div>
+                            <div class="microneedle">
+                                <div class="needle-tip"></div>
+                                <div class="needle-base"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="drugDeliveryChart"></canvas>
+                        </div>
+                        
+                        <div class="comparison-grid" style="margin-top: 15px;">
+                            <div class="comparison-col">
+                                <div class="comparison-header">기존 약물 전달</div>
+                                <div class="comparison-item">주사 시 통증 및 공포감</div>
+                                <div class="comparison-item">약물의 비특이적 작용</div>
+                                <div class="comparison-item">부작용 발생 가능성 높음</div>
+                            </div>
+                            <div class="comparison-col">
+                                <div class="comparison-header">스마트 약물 전달</div>
+                                <div class="comparison-item">통증 없는 약물 투여</div>
+                                <div class="comparison-item">질병 부위 특이적 작용</div>
+                                <div class="comparison-item">적은 용량으로 높은 효능</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 약물 전달 효율성 차트
+            const ctx = document.getElementById('drugDeliveryChart').getContext('2d');
+            const drugDeliveryChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['효과 지속성', '정확성', '환자 편의성', '부작용 감소', '비용 효율성'],
+                    datasets: [
+                        {
+                            label: '기존 약물 전달',
+                            data: [40, 30, 20, 25, 65],
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            borderColor: 'rgba(255, 255, 255, 0.5)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(255, 255, 255, 0.8)'
+                        },
+                        {
+                            label: '스마트 약물 전달',
+                            data: [80, 90, 85, 75, 60],
+                            backgroundColor: 'rgba(93, 159, 255, 0.3)',
+                            borderColor: 'rgba(93, 159, 255, 0.8)',
+                            borderWidth: 2,
+                            pointBackgroundColor: 'rgba(93, 159, 255, 0.8)'
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            pointLabels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            ticks: {
+                                display: false,
+                                backdropColor: 'transparent'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                font: {
+                                    size: 11
+                                },
+                                boxWidth: 12
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
