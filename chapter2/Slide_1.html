@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사람보다 똑똑한 바보, 인공지능 이해하기</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            overflow: hidden;
+        }
+        .title {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #2563eb, #0284c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+        .author {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .institution {
+            font-size: 1.5rem;
+            color: #475569;
+        }
+        .tech-icon {
+            position: absolute;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .tech-icon.ai {
+            color: #2563eb;
+            top: 200px;
+            right: 200px;
+            font-size: 15rem;
+            transform: rotate(15deg);
+        }
+        .tech-icon.robot {
+            color: #16a34a;
+            bottom: 250px;
+            right: 300px;
+            font-size: 12rem;
+            transform: rotate(-10deg);
+        }
+        .tech-icon.car {
+            color: #dc2626;
+            bottom: 200px;
+            left: 200px;
+            font-size: 14rem;
+            transform: rotate(5deg);
+        }
+        .tech-icon.building {
+            color: #ca8a04;
+            top: 250px;
+            left: 250px;
+            font-size: 13rem;
+            transform: rotate(-5deg);
+        }
+        .topic-indicator {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .ai-color { background-color: #2563eb; }
+        .robot-color { background-color: #16a34a; }
+        .car-color { background-color: #dc2626; }
+        .building-color { background-color: #ca8a04; }
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        .topic-list {
+            margin-top: 3rem;
+            font-size: 1.6rem;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide flex items-center">
+        <div class="content-wrapper p-20 ml-10">
+            <h1 class="title">2장:<br>지능에 대한 인간 독점을 깨다</h1>
+            <h2 class="subtitle">4차 산업혁명 시대의 기술에 대한 통합적 이해</h2>
+            
+            <div class="mt-16">
+                <div class="topic-list mb-4">
+                    <span class="topic-indicator ai-color"></span>인공지능: 사람보다 똑똑한 바보, 인공지능 이해하기
+                </div>
+                <div class="topic-list mb-4">
+                    <span class="topic-indicator robot-color"></span>로봇공학: 로봇과 협업하는 인간의 미래를 상상하다
+                </div>
+                <div class="topic-list mb-4">
+                    <span class="topic-indicator car-color"></span>미래 자동차: 산업 시대의 상징, 자동차는 어떻게 진화할 것인가
+                </div>
+                <div class="topic-list mb-4">
+                    <span class="topic-indicator building-color"></span>스마트 건축: 거주공간이 인간을 배려하는 지능을 갖는다
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Technology Icons -->
+        <i class="fas fa-brain tech-icon ai"></i>
+        <i class="fas fa-robot tech-icon robot"></i>
+        <i class="fas fa-car tech-icon car"></i>
+        <i class="fas fa-building tech-icon building"></i>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const icons = document.querySelectorAll('.tech-icon');
+            
+            icons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.style.transition = 'opacity 1.5s, transform 2s';
+                    icon.style.opacity = '0.15';
+                    
+                    // Slight movement animation
+                    const currentRotation = getComputedStyle(icon).transform;
+                    const randomMove = (Math.random() * 6) - 3; // -3 to +3
+                    
+                    if(index % 2 === 0) {
+                        icon.style.transform += ' translateY(' + randomMove + 'px)';
+                    } else {
+                        icon.style.transform += ' translateX(' + randomMove + 'px)';
+                    }
+                }, 300 * index);
+            });
+        });
+    </script>
+</body>
+</html>

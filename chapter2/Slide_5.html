@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인공지능의 미래와 도전과제</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem;
+        }
+        .left-column {
+            flex: 2;
+            padding-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+        .challenge-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .challenge-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            margin-right: 2rem;
+            flex-shrink: 0;
+        }
+        .challenge-content {
+            flex: 1;
+        }
+        .challenge-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        .challenge-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .detail-point {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
+            color: #334155;
+        }
+        .detail-point i {
+            color: #3b82f6;
+            margin-right: 0.8rem;
+            flex-shrink: 0;
+        }
+        .future-direction {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        .direction-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .direction-items {
+            display: flex;
+            justify-content: space-around;
+        }
+        .direction-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 30%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .direction-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .item-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1rem;
+        }
+        .item-icon i {
+            font-size: 1.8rem;
+            color: #1e40af;
+        }
+        .item-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .item-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .ethics-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            height: 100%;
+        }
+        .ethics-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .ethics-title i {
+            margin-right: 1rem;
+            color: #3b82f6;
+        }
+        .ethics-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .ethics-icon {
+            width: 40px;
+            height: 40px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        .ethics-icon i {
+            font-size: 1.2rem;
+            color: #1e40af;
+        }
+        .ethics-content {
+            flex: 1;
+        }
+        .ethics-heading {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .ethics-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        .highlight-text {
+            color: #1e40af;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">인공지능의 미래와 도전과제</h1>
+            <p class="subtitle">딥러닝의 한계와 새로운 방향성</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="chart-container">
+                    <canvas id="aiProgressChart"></canvas>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-detail">
+                        <div class="challenge-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="challenge-content">
+                            <h2 class="challenge-title">딥러닝의 현재 한계</h2>
+                            <div class="detail-point">
+                                <i class="fas fa-angle-right"></i>
+                                <span>대량의 <span class="highlight-text">라벨링된 데이터</span> 필요: 이미지넷 데이터셋 구축에만 3년 소요</span>
+                            </div>
+                            <div class="detail-point">
+                                <i class="fas fa-angle-right"></i>
+                                <span>특정 영역에 <span class="highlight-text">과적합(overfitting)</span>되어 일반화 능력 부족</span>
+                            </div>
+                            <div class="detail-point">
+                                <i class="fas fa-angle-right"></i>
+                                <span>인과관계 추론보다 상관관계에 의존하여 <span class="highlight-text">의사결정의 불투명성</span> 존재</span>
+                            </div>
+                            <div class="detail-point">
+                                <i class="fas fa-angle-right"></i>
+                                <span>높은 에너지 소비와 <span class="highlight-text">환경적 비용</span> 발생</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="future-direction">
+                    <h2 class="direction-title">새로운 학습 패러다임의 필요성</h2>
+                    <div class="direction-items">
+                        <div class="direction-item">
+                            <div class="item-icon">
+                                <i class="fas fa-low-vision"></i>
+                            </div>
+                            <h3 class="item-title">비지도학습</h3>
+                            <p class="item-desc">라벨 없이 데이터의 패턴과 구조를 스스로 학습하는 방식</p>
+                        </div>
+                        
+                        <div class="direction-item">
+                            <div class="item-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="item-title">준지도학습</h3>
+                            <p class="item-desc">소량의 라벨링된 데이터와 대량의 라벨링되지 않은 데이터 활용</p>
+                        </div>
+                        
+                        <div class="direction-item">
+                            <div class="item-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h3 class="item-title">비디오 이해 기술</h3>
+                            <p class="item-desc">시간적 맥락까지 이해하는 보다 고도화된 시각지능</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="ethics-container">
+                    <h2 class="ethics-title">
+                        <i class="fas fa-balance-scale"></i>
+                        AI 윤리와 미래 전망
+                    </h2>
+                    
+                    <div class="ethics-item">
+                        <div class="ethics-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="ethics-content">
+                            <h3 class="ethics-heading">공정성과 편향성</h3>
+                            <p class="ethics-desc">AI 시스템이 학습하는 데이터에 내재된 사회적 편향이 의사결정에 반영될 위험</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ethics-item">
+                        <div class="ethics-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="ethics-content">
+                            <h3 class="ethics-heading">개인정보 보호</h3>
+                            <p class="ethics-desc">방대한 데이터 수집과 분석 과정에서 개인정보 유출과 악용 가능성</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ethics-item">
+                        <div class="ethics-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="ethics-content">
+                            <h3 class="ethics-heading">설명 가능한 AI</h3>
+                            <p class="ethics-desc">AI의 결정 과정을 사람이 이해하고 검증할 수 있는 투명성 확보 필요</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ethics-item">
+                        <div class="ethics-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="ethics-content">
+                            <h3 class="ethics-heading">일자리 변화</h3>
+                            <p class="ethics-desc">기존 직업의 소멸과 새로운 직업의 등장으로 인한 노동시장 변화 대응</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ethics-item">
+                        <div class="ethics-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="ethics-content">
+                            <h3 class="ethics-heading">미래 전망</h3>
+                            <p class="ethics-desc">"인공지능 기술을 더욱 발전시키는 중심에는 컴퓨터과학이 있고, 컴퓨터과학의 미래는 매우 밝다"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // AI Progress Chart
+            const ctx = document.getElementById('aiProgressChart').getContext('2d');
+            const aiProgressChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1950년대', '1980년대', '2000년대', '2010년대', '2020년대', '2030년대(예측)'],
+                    datasets: [
+                        {
+                            label: '인공지능 성능',
+                            data: [10, 15, 25, 60, 85, 95],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: '#1e40af',
+                            pointBorderColor: '#fff',
+                            pointHoverRadius: 8,
+                            pointBorderWidth: 2,
+                            pointRadius: 6
+                        },
+                        {
+                            label: '인간 능력 비교 벤치마크',
+                            data: [90, 90, 90, 90, 90, 90],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            fill: false,
+                            borderDash: [5, 5],
+                            tension: 0,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '영역별 AI 기술의 발전과 미래 전망',
+                            font: {
+                                size: 20,
+                                family: "'Noto Sans KR', sans-serif",
+                                weight: 'bold'
+                            },
+                            color: '#1e3a8a',
+                            padding: 20
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(30, 58, 138, 0.9)',
+                            titleFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 14
+                            },
+                            padding: 15,
+                            caretSize: 10,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                },
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 12
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Animation for challenge cards
+            const challengeCard = document.querySelector('.challenge-card');
+            setTimeout(() => {
+                challengeCard.style.transform = 'translateY(0)';
+                challengeCard.style.opacity = '1';
+            }, 300);
+            
+            // Animation for direction items
+            const directionItems = document.querySelectorAll('.direction-item');
+            directionItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'translateY(0)';
+                    item.style.opacity = '1';
+                }, 500 + (200 * index));
+            });
+            
+            // Animation for ethics items
+            const ethicsItems = document.querySelectorAll('.ethics-item');
+            ethicsItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'translateX(0)';
+                    item.style.opacity = '1';
+                }, 700 + (150 * index));
+            });
+        });
+    </script>
+</body>
+</html>

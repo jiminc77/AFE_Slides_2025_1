@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기동력 자동차의 발전</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #8b0000, #e53935);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #5d0000;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #e53935;
+        }
+        .ev-types {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .ev-type {
+            width: 18%;
+            text-align: center;
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .ev-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .ev-icon {
+            font-size: 2.5rem;
+            color: #b71c1c;
+            margin-bottom: 1rem;
+        }
+        .ev-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+        }
+        .ev-desc {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .chart-container {
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+        .challenges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .challenge {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #e53935;
+            transition: all 0.2s ease;
+        }
+        .challenge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .challenge-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .challenge-title i {
+            margin-right: 0.5rem;
+            color: #e53935;
+        }
+        .challenge-desc {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        .compare-table th {
+            background: #e53935;
+            color: white;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .compare-table td {
+            padding: 0.8rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .compare-table tr:nth-child(even) {
+            background: #ffebee;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #e53935;
+        }
+        .highlight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .highlight-title i {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+        .progress-container {
+            background: #f5f5f5;
+            border-radius: 10px;
+            height: 25px;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #e53935, #b71c1c);
+            transition: width 1s ease-in-out;
+        }
+        .progress-label {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .tech-comparison {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .tech {
+            width: 32%;
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .tech-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #b71c1c;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .tech-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .tech-feature i {
+            color: #e53935;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">전기동력 자동차의 발전</h1>
+            <p class="subtitle">전기차, 하이브리드, 수소연료전지차의 특성과 전망</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-charging-station"></i>전기동력 자동차의 유형</h2>
+                    
+                    <div class="ev-types">
+                        <div class="ev-type">
+                            <div class="ev-icon"><i class="fas fa-car-battery"></i></div>
+                            <div class="ev-name">마일드 하이브리드</div>
+                            <div class="ev-desc">48볼트 배터리 사용, 제동 에너지 회수, 가속 지원</div>
+                        </div>
+                        
+                        <div class="ev-type">
+                            <div class="ev-icon"><i class="fas fa-gas-pump"></i></div>
+                            <div class="ev-name">풀 하이브리드</div>
+                            <div class="ev-desc">내연기관과 전기모터 조합, 단거리 전기주행 가능</div>
+                        </div>
+                        
+                        <div class="ev-type">
+                            <div class="ev-icon"><i class="fas fa-plug"></i></div>
+                            <div class="ev-name">플러그인 하이브리드</div>
+                            <div class="ev-desc">외부 충전, 50km 전기주행, 출퇴근 전기모드 가능</div>
+                        </div>
+                        
+                        <div class="ev-type">
+                            <div class="ev-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="ev-name">주행거리 연장형</div>
+                            <div class="ev-desc">배터리+내연기관 발전기, 주행거리 확장</div>
+                        </div>
+                        
+                        <div class="ev-type">
+                            <div class="ev-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="ev-name">배터리 전기차</div>
+                            <div class="ev-desc">100% 전기 동력, 1회 충전 300km+ 주행</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="evMarketChart"></canvas>
+                    </div>
+                    
+                    <div class="feature-highlight">
+                        <h3 class="highlight-title"><i class="fas fa-chart-line"></i>전기차 시장 전망</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 10%;"></div>
+                            <div class="progress-label">10%</div>
+                        </div>
+                        <div class="progress-info">
+                            <span>2023년 세계 시장 점유율</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                            <div class="progress-label">25%</div>
+                        </div>
+                        <div class="progress-info">
+                            <span>2030년 예상 점유율</span>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 60%;"></div>
+                            <div class="progress-label">60%</div>
+                        </div>
+                        <div class="progress-info">
+                            <span>2040년 예상 점유율</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-tint"></i>수소연료전지 자동차</h2>
+                    
+                    <div class="tech-comparison">
+                        <div class="tech">
+                            <h3 class="tech-title">특징</h3>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>물만 배출하는 친환경 기술</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>5분 내외 충전 완료</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>1회 충전 500km+ 주행</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>전기차 대비 긴 수명</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <h3 class="tech-title">현대차 넥쏘</h3>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>주행거리 580km</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>수소연료전지 효율 60%</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>5분 충전, 즉시 출발</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>수소탱크 안전성 검증</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <h3 class="tech-title">도요타 미라이</h3>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>주행거리 502km</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>수소저장 3탱크 구조</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>최고출력 175마력</div>
+                            <div class="tech-feature"><i class="fas fa-check-circle"></i>공기청정 기능 탑재</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="technologyCompareChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-exclamation-triangle"></i>주요 도전과제</h2>
+                    
+                    <div class="challenges">
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-dollar-sign"></i>배터리 가격</h3>
+                            <p class="challenge-desc">리튬이온 배터리 원자재 가격 상승 문제, 2020년 kWh당 100달러 목표</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-clock"></i>충전 시간</h3>
+                            <p class="challenge-desc">급속충전도 30분 소요, 내연기관 대비 불편함</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-road"></i>주행거리</h3>
+                            <p class="challenge-desc">배터리 용량 증가 시 가격 상승과 차량 무게 증가 문제</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-map-marker-alt"></i>충전 인프라</h3>
+                            <p class="challenge-desc">전기차: 충전소 부족, 수소차: 생산·저장·공급 시설 미비</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-recycle"></i>배터리 재활용</h3>
+                            <p class="challenge-desc">수명 다한 배터리의 효율적 재활용 체계 구축 필요</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-industry"></i>생산 인프라</h3>
+                            <p class="challenge-desc">수소: 친환경 생산방식 필요, 전기: 발전소 추가 건설 이슈</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // EV Market Chart
+            const evCtx = document.getElementById('evMarketChart').getContext('2d');
+            const evMarketChart = new Chart(evCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2025', '2030', '2035', '2040'],
+                    datasets: [
+                        {
+                            label: '전기차(BEV)',
+                            data: [3, 12, 25, 45, 60],
+                            backgroundColor: 'rgba(229, 57, 53, 0.3)',
+                            borderColor: 'rgba(229, 57, 53, 1)',
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: '하이브리드(HEV/PHEV)',
+                            data: [5, 15, 20, 15, 10],
+                            backgroundColor: 'rgba(66, 165, 245, 0.3)',
+                            borderColor: 'rgba(66, 165, 245, 1)',
+                            borderWidth: 3,
+                            tension: 0.3
+                        },
+                        {
+                            label: '수소연료전지(FCEV)',
+                            data: [0.5, 3, 10, 15, 20],
+                            backgroundColor: 'rgba(102, 187, 106, 0.3)',
+                            borderColor: 'rgba(102, 187, 106, 1)',
+                            borderWidth: 3,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 70,
+                            title: {
+                                display: true,
+                                text: '시장 점유율 (%)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '전기동력 자동차 시장 전망',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: '#b71c1c'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+            
+            // Technology Compare Chart
+            const compareCtx = document.getElementById('technologyCompareChart').getContext('2d');
+            const technologyCompareChart = new Chart(compareCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['친환경성', '충전 속도', '주행거리', '인프라 구축', '유지비용', '초기 구매비용'],
+                    datasets: [
+                        {
+                            label: '내연기관차',
+                            data: [20, 90, 80, 95, 60, 90],
+                            backgroundColor: 'rgba(255, 152, 0, 0.3)',
+                            borderColor: 'rgba(255, 152, 0, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '배터리 전기차',
+                            data: [85, 30, 70, 60, 80, 60],
+                            backgroundColor: 'rgba(229, 57, 53, 0.3)',
+                            borderColor: 'rgba(229, 57, 53, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '수소연료전지차',
+                            data: [90, 80, 75, 40, 70, 50],
+                            backgroundColor: 'rgba(102, 187, 106, 0.3)',
+                            borderColor: 'rgba(102, 187, 106, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '자동차 기술 비교',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: '#b71c1c'
+                        }
+                    }
+                }
+            });
+            
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    const width = bar.getAttribute('style').match(/width: (\d+)%/)[1];
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width + '%';
+                    }, 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

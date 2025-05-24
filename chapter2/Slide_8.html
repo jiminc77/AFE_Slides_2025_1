@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자동차 산업의 현황과 변화</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #8b0000, #e53935);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #5d0000;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #e53935;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .challenges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .challenge {
+            width: 48%;
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #e53935;
+        }
+        .challenge-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #b71c1c;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .challenge-title i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+            color: #e53935;
+        }
+        .challenge-desc {
+            font-size: 1rem;
+            color: #333;
+        }
+        .chart-container {
+            height: 350px;
+            margin-bottom: 1.5rem;
+        }
+        .counter-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #b71c1c, #e53935);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(183, 28, 28, 0.2);
+        }
+        .counter-value {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+        .counter-label {
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .timeline {
+            position: relative;
+            margin: 0 0 2rem 0;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #e53935;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            background: #e53935;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            transform: translateY(-50%);
+        }
+        .timeline-content.left .timeline-year {
+            right: -110px;
+        }
+        .timeline-content.right .timeline-year {
+            left: -110px;
+        }
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.8rem;
+        }
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .company {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .company:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 0.8rem auto;
+        }
+        .company-logo i {
+            font-size: 2rem;
+            color: #b71c1c;
+        }
+        .company-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .company-country {
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">자동차 산업의 현황과 변화</h1>
+            <p class="subtitle">세계 자동차 산업의 현황과 직면한 도전과제</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="counter-box">
+                    <div class="counter-value">1억</div>
+                    <div class="counter-label">연간 생산 예정 자동차 대수<br>(2023년 기준)</div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-globe-americas"></i>글로벌 자동차 산업 현황</h2>
+                    
+                    <div class="chart-container">
+                        <canvas id="productionChart"></canvas>
+                    </div>
+                    
+                    <div class="company-grid">
+                        <div class="company">
+                            <div class="company-logo">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="company-name">도요타</div>
+                            <div class="company-country">일본</div>
+                        </div>
+                        
+                        <div class="company">
+                            <div class="company-logo">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="company-name">폭스바겐</div>
+                            <div class="company-country">독일</div>
+                        </div>
+                        
+                        <div class="company">
+                            <div class="company-logo">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="company-name">GM</div>
+                            <div class="company-country">미국</div>
+                        </div>
+                        
+                        <div class="company">
+                            <div class="company-logo">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="company-name">현대·기아</div>
+                            <div class="company-country">한국</div>
+                        </div>
+                        
+                        <div class="company">
+                            <div class="company-logo">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="company-name">BYD</div>
+                            <div class="company-country">중국</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">4%</div>
+                        <div class="stat-label">한국 총생산량 중 자동차산업 비중</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-value">13%</div>
+                        <div class="stat-label">한국 수출 중 자동차산업 비중</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-value">3만+</div>
+                        <div class="stat-label">자동차 부품 개수</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-value">90분</div>
+                        <div class="stat-label">한국인 일평균 자동차 이용시간</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-exclamation-triangle"></i>자동차산업의 도전과제</h2>
+                    
+                    <div class="challenges">
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-oil-can"></i>화석연료 의존</h3>
+                            <p class="challenge-desc">석유자원 고갈 우려와 화석연료 의존에 따른 지속가능성 문제 대두</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-smog"></i>환경 오염</h3>
+                            <p class="challenge-desc">배기가스의 대기오염 문제와 이산화탄소 배출로 인한 지구온난화 영향</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-car-crash"></i>교통사고</h3>
+                            <p class="challenge-desc">인적 오류로 인한 교통사고 문제와 안전성 확보의 필요성</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-traffic-light"></i>교통 체증</h3>
+                            <p class="challenge-desc">도시화에 따른 교통 혼잡과 효율적인 교통 시스템 구축 과제</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-industry"></i>제조비용</h3>
+                            <p class="challenge-desc">높은 인건비와 복잡한 생산 공정으로 인한 제조원가 상승</p>
+                        </div>
+                        
+                        <div class="challenge">
+                            <h3 class="challenge-title"><i class="fas fa-recycle"></i>자원 재활용</h3>
+                            <p class="challenge-desc">자동차 폐기물 처리와 금속, 배터리 등 자원의 재활용 문제</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-history"></i>변화의 흐름</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content left">
+                                <span class="timeline-year">현재</span>
+                                <h3 class="timeline-title">내연기관 시대</h3>
+                                <p>전 세계 자동차 시장의 대부분은 여전히 내연기관 차량이 차지하나, 전환점에 도달</p>
+                            </div>
+                            <div style="width: 10%;"></div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div style="width: 10%;"></div>
+                            <div class="timeline-content right">
+                                <span class="timeline-year">2025</span>
+                                <h3 class="timeline-title">전기동력 이행기</h3>
+                                <p>노르웨이 내연기관 자동차 판매 금지, 하이브리드·전기차 보급 확대</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content left">
+                                <span class="timeline-year">2030</span>
+                                <h3 class="timeline-title">자율주행 확산</h3>
+                                <p>자율주행 기술 보편화, 카셰어링과 모빌리티 서비스 중심으로 산업 재편</p>
+                            </div>
+                            <div style="width: 10%;"></div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div style="width: 10%;"></div>
+                            <div class="timeline-content right">
+                                <span class="timeline-year">2040</span>
+                                <h3 class="timeline-title">내연기관 은퇴</h3>
+                                <p>영국, 프랑스 등 주요국 내연기관 차량 판매 금지, 전기·수소 동력 중심 시장 형성</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Production Chart
+            const ctx = document.getElementById('productionChart').getContext('2d');
+            const productionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['중국', '미국', '일본', '독일', '한국', '인도', '기타'],
+                    datasets: [{
+                        label: '연간 자동차 생산량 (백만 대)',
+                        data: [28, 11, 9.5, 5, 4.5, 4, 28],
+                        backgroundColor: [
+                            'rgba(183, 28, 28, 0.7)',
+                            'rgba(198, 40, 40, 0.7)',
+                            'rgba(211, 47, 47, 0.7)',
+                            'rgba(229, 57, 53, 0.7)',
+                            'rgba(239, 83, 80, 0.7)',
+                            'rgba(244, 67, 54, 0.7)',
+                            'rgba(229, 115, 115, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(183, 28, 28, 1)',
+                            'rgba(198, 40, 40, 1)',
+                            'rgba(211, 47, 47, 1)',
+                            'rgba(229, 57, 53, 1)',
+                            'rgba(239, 83, 80, 1)',
+                            'rgba(244, 67, 54, 1)',
+                            'rgba(229, 115, 115, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '생산량 (백만 대)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: '주요국 자동차 생산량 분포',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            },
+                            color: '#b71c1c'
+                        },
+                        tooltip: {
+                            bodyFont: {
+                                family: "'Noto Sans KR', sans-serif"
+                            },
+                            titleFont: {
+                                family: "'Noto Sans KR', sans-serif"
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

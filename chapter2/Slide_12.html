@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인간 중심형 건축 기술</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #fffde7 0%, #fff 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #f9a825, #fdd835);
+            color: #212121;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #f57f17;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #fdd835;
+        }
+        .evolution-container {
+            display: flex;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+        .evolution-stage {
+            flex: 1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 0 0.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .evolution-stage:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .evolution-stage::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #f57f17;
+        }
+        .evolution-icon {
+            font-size: 3rem;
+            color: #f57f17;
+            margin-bottom: 1rem;
+        }
+        .evolution-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .evolution-description {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #f57f17;
+        }
+        .feature:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: #fffde7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: #f57f17;
+            font-size: 1.8rem;
+        }
+        .feature-content {
+            flex: 1;
+        }
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .feature-description {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .chart-container {
+            height: 300px;
+            margin-top: 1.5rem;
+        }
+        .case-study {
+            border: 2px solid #f57f17;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            background: rgba(255, 253, 231, 0.5);
+        }
+        .case-study-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .case-study-title i {
+            margin-right: 0.8rem;
+        }
+        .case-study-content {
+            font-size: 1rem;
+            color: #333;
+        }
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .sensor-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .sensor-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .sensor-icon {
+            font-size: 2rem;
+            color: #f57f17;
+            margin-bottom: 0.8rem;
+        }
+        .sensor-name {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .sensor-desc {
+            font-size: 0.8rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">인간 중심형 건축 기술</h1>
+            <p class="subtitle">온돌부터 AI 기반 환경 제어까지 인간을 배려하는 건축 기술 발전</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-history"></i>인간 중심형 건축 기술의 진화</h2>
+                    
+                    <div class="evolution-container">
+                        <div class="evolution-stage">
+                            <div class="evolution-icon"><i class="fas fa-fire"></i></div>
+                            <div class="evolution-title">전통 온돌 시스템</div>
+                            <div class="evolution-description">열용량이 높은 구들장을 활용해 지속적인 바닥 난방 제공</div>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="evolution-icon"><i class="fas fa-temperature-low"></i></div>
+                            <div class="evolution-title">현대식 바닥 난방</div>
+                            <div class="evolution-description">온수 기반 중앙 난방 시스템, 효율적 열 전달</div>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="evolution-icon"><i class="fas fa-brain"></i></div>
+                            <div class="evolution-title">AI 기반 환경 제어</div>
+                            <div class="evolution-description">착의량, 활동량 인식 기반 맞춤 실내환경 제어</div>
+                        </div>
+                    </div>
+
+                    <div class="case-study">
+                        <h3 class="case-study-title"><i class="fas fa-lightbulb"></i>적정기술 사례</h3>
+                        <div class="case-study-content">
+                            <p>에어캡을 활용한 창문 단열은 간단하고 실용적인 인간 중심형 기술 사례. 단열 향상, 결로 방지, 누구나 적용 가능.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="comfortChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-user-cog"></i>거주자 맞춤형 환경 기술</h2>
+                    
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-camera-retro"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">적외선 카메라 착의량 측정</div>
+                            <div class="feature-description">얼굴-의복 온도차 분석으로 실시간 착의량 파악</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-running"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">AI 기반 대사량 예측</div>
+                            <div class="feature-description">활동 데이터를 학습해 대사량 기반 온도 조절</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-cloud-sun"></i></div>
+                        <div class="feature-content">
+                            <div class="feature-title">통합 환경 제어 시스템</div>
+                            <div class="feature-description">온도, 습도, 조도, 기류 통합 제어로 쾌적도 향상</div>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: #f57f17; margin: 1.5rem 0;">스마트 센서 기술</h3>
+                    <div class="sensor-grid">
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-thermometer-half"></i></div>
+                            <div class="sensor-name">온도 센서</div>
+                            <div class="sensor-desc">±0.1°C 정밀도로 공간 온도 측정</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-tint"></i></div>
+                            <div class="sensor-name">습도 센서</div>
+                            <div class="sensor-desc">호흡기 건강을 위한 습도 조절</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-wind"></i></div>
+                            <div class="sensor-name">기류 센서</div>
+                            <div class="sensor-desc">쾌적 기류 유지로 피로도 감소</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-sun"></i></div>
+                            <div class="sensor-name">복사열 센서</div>
+                            <div class="sensor-desc">표면 온도 감지로 복사 효과 분석</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-user-check"></i></div>
+                            <div class="sensor-name">재실 감지</div>
+                            <div class="sensor-desc">존재 여부 감지로 에너지 효율 최적화</div>
+                        </div>
+                        <div class="sensor-item">
+                            <div class="sensor-icon"><i class="fas fa-lightbulb"></i></div>
+                            <div class="sensor-name">조도 센서</div>
+                            <div class="sensor-desc">자연광 조절로 시각 피로 완화</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('comfortChart').getContext('2d');
+        const comfortChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['전통 온돌', '현대 난방', 'AI 제어'],
+                datasets: [{
+                    label: '쾌적도 지수 (Comfort Index)',
+                    data: [65, 78, 92],
+                    backgroundColor: ['#fdd835', '#fbc02d', '#f57f17'],
+                    borderRadius: 10,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '지수 (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '기술 단계'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

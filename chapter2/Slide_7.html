@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로봇과 인공지능의 융합</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1b5e20, #4caf50);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #0a3d12;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1b5e20;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #4caf50;
+        }
+        .fusion-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .fusion-point {
+            width: 48%;
+            background: #f1f8e9;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #4caf50;
+        }
+        .point-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .point-title i {
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            color: #4caf50;
+        }
+        .point-desc {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #1b5e20;
+            font-weight: 600;
+        }
+        .collaboration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .collaboration-area {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .collaboration-area:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .area-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .area-icon i {
+            font-size: 2.5rem;
+            color: #1b5e20;
+        }
+        .area-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .area-desc {
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .chart-container {
+            height: 350px;
+            margin-bottom: 2rem;
+        }
+        .example-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .example-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1b5e20;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .examples {
+            display: flex;
+            justify-content: space-around;
+        }
+        .example {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            width: 30%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .example-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .example-desc {
+            font-size: 0.9rem;
+            color: #333;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #333;
+            border-left: 5px solid #4caf50;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .feature {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 0.8rem;
+        }
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #333;
+            text-align: center;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">로봇과 인공지능의 융합</h1>
+            <p class="subtitle">현재와 미래의 로봇 기술 동향과 인간과의 협업</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-microchip"></i>AI와 로봇의 결합</h2>
+                    
+                    <div class="fusion-points">
+                        <div class="fusion-point">
+                            <h3 class="point-title"><i class="fas fa-brain"></i>인식 능력 강화</h3>
+                            <p class="point-desc">딥러닝 기반 <span class="highlight">시각·음성 인식</span>으로 환경 감지 능력이 대폭 향상. 복잡한 환경에서도 정확한 상황 판단 가능</p>
+                        </div>
+                        
+                        <div class="fusion-point">
+                            <h3 class="point-title"><i class="fas fa-cogs"></i>자율 행동 발전</h3>
+                            <p class="point-desc">AI가 로봇에 <span class="highlight">자율적 의사결정</span> 능력 부여. 인간의 지시 없이도 임무를 완수하는 단계로 발전</p>
+                        </div>
+                        
+                        <div class="fusion-point">
+                            <h3 class="point-title"><i class="fas fa-sync-alt"></i>적응형 학습</h3>
+                            <p class="point-desc">로봇이 <span class="highlight">스스로 학습</span>하며 환경 변화에 적응. 새로운 상황에 맞게 행동 패턴 조정 가능</p>
+                        </div>
+                        
+                        <div class="fusion-point">
+                            <h3 class="point-title"><i class="fas fa-comments"></i>인간-로봇 소통</h3>
+                            <p class="point-desc">자연어 처리 기술로 <span class="highlight">인간과의 자연스러운 대화</span> 구현. 감정 인식 기능으로 상호작용 품질 향상</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="robotAIChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h3 class="example-title">AI-로봇 융합 대표 사례</h3>
+                    <div class="examples">
+                        <div class="example">
+                            <h4 class="example-name">다빈치 수술 로봇</h4>
+                            <p class="example-desc">AI 지원으로 인간 의사의 수술 정확도 향상. 미세 떨림 보정과 정밀 제어 가능</p>
+                        </div>
+                        
+                        <div class="example">
+                            <h4 class="example-name">웨이모 자율주행차</h4>
+                            <p class="example-desc">구글의 AI 기술이 탑재된 완전 자율주행 로봇카. 복잡한 도로 환경 판단</p>
+                        </div>
+                        
+                        <div class="example">
+                            <h4 class="example-name">소피아</h4>
+                            <p class="example-desc">인공지능으로 대화하고 표정을 바꾸는 휴머노이드 로봇. 시민권 취득한 첫 로봇</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-users"></i>인간-로봇 협업의 미래</h2>
+                    
+                    <p class="quote">"핵분열의 발견이 원자력 발전과 핵폭탄의 양면성을 가지듯이, 미래의 로봇에서 같은 종류의 문제에 대해 고찰해 볼 필요가 있다. 과학기술의 발전에 선한 인간의 인문학적 본성을 '연결'하는 노력을 시작해야 한다."</p>
+                    
+                    <div class="collaboration-grid">
+                        <div class="collaboration-area">
+                            <div class="area-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3 class="area-title">제조업</h3>
+                            <p class="area-desc">협동 로봇(코봇)이 인간과 작업장 공유. 무거운 물체 운반, 정밀 작업 지원</p>
+                        </div>
+                        
+                        <div class="collaboration-area">
+                            <div class="area-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <h3 class="area-title">의료·돌봄</h3>
+                            <p class="area-desc">간호·재활 보조, 고령자 생활 지원. 감정 인식으로 환자와 교감</p>
+                        </div>
+                        
+                        <div class="collaboration-area">
+                            <div class="area-icon">
+                                <i class="fas fa-radiation"></i>
+                            </div>
+                            <h3 class="area-title">위험 환경</h3>
+                            <p class="area-desc">재난 구조, 우주·해저 탐사, 핵시설 관리 등 인간 대신 위험 작업 수행</p>
+                        </div>
+                        
+                        <div class="collaboration-area">
+                            <div class="area-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="area-title">교육·연구</h3>
+                            <p class="area-desc">개인 맞춤형 학습 지원, 복잡한 실험 보조, 창의적 연구 협업</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="example-title">미래 로봇 기술 주요 동향</h3>
+                    <div class="feature-grid">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h4 class="feature-title">클라우드 로보틱스</h4>
+                            <p class="feature-desc">클라우드 기반 데이터 공유와 집단 학습으로 로봇 지능 향상</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <h4 class="feature-title">소프트 로보틱스</h4>
+                            <p class="feature-desc">유연하고 안전한 생체모방형 소재로 인간과 안전한 접촉 가능</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h4 class="feature-title">멀티 로봇 시스템</h4>
+                            <p class="feature-desc">다중 로봇 간 협업으로 복잡한 임무 수행 능력 강화</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 class="feature-title">윤리적 AI 로봇</h4>
+                            <p class="feature-desc">아시모프의 3원칙을 넘어 윤리적 판단이 가능한 로봇 개발</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h4 class="feature-title">감정 인식 로봇</h4>
+                            <p class="feature-desc">인간의 감정 상태를 인식하고 적절히 반응하는 사회적 로봇</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-universal-access"></i>
+                            </div>
+                            <h4 class="feature-title">신체 증강 기술</h4>
+                            <p class="feature-desc">외골격 로봇과 웨어러블 기기로 인간 능력 확장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('robotAIChart').getContext('2d');
+            const robotAIChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['환경인식', '자율행동', '학습능력', '인간협업', '문제해결', '적응력'],
+                    datasets: [
+                        {
+                            label: '기존 로봇',
+                            data: [30, 15, 10, 25, 35, 20],
+                            backgroundColor: 'rgba(200, 230, 201, 0.3)',
+                            borderColor: 'rgba(76, 175, 80, 0.7)',
+                            pointBackgroundColor: 'rgba(76, 175, 80, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(76, 175, 80, 1)'
+                        },
+                        {
+                            label: 'AI 융합 로봇',
+                            data: [85, 80, 90, 75, 85, 80],
+                            backgroundColor: 'rgba(3, 169, 244, 0.3)',
+                            borderColor: 'rgba(3, 169, 244, 0.7)',
+                            pointBackgroundColor: 'rgba(3, 169, 244, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(3, 169, 244, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                backdropColor: 'rgba(255, 255, 255, 0)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif"
+                                }
+                            },
+                            pointLabels: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                color: '#1b5e20'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'AI 융합에 따른 로봇 성능 변화',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 18,
+                                weight: 'bold'
+                            },
+                            color: '#1b5e20',
+                            padding: {
+                                top: 10,
+                                bottom: 30
+                            }
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

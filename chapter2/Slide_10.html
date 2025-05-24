@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자율주행 자동차 기술</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #8b0000, #e53935);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #5d0000;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #e53935;
+        }
+        .levels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .level {
+            width: 18%;
+            text-align: center;
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .level:hover {
+            transform: translateY(-10px);
+        }
+        .level-1 { background: linear-gradient(135deg, #fff5f5, #ffcdd2); }
+        .level-2 { background: linear-gradient(135deg, #fff0f0, #ffb3b3); }
+        .level-3 { background: linear-gradient(135deg, #ffe5e5, #ff9e9e); }
+        .level-4 { background: linear-gradient(135deg, #ffd6d6, #ff7575); }
+        .level-5 { background: linear-gradient(135deg, #e53935, #b71c1c); color: white; }
+        
+        .level-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .level-5 .level-number { color: white; }
+        .level-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .level-5 .level-name { color: white; }
+        .level-desc {
+            font-size: 0.9rem;
+        }
+        .level-5 .level-desc { color: rgba(255,255,255,0.9); }
+        
+        .tech-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .tech {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid #e53935;
+        }
+        .tech:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .tech-icon {
+            font-size: 2.5rem;
+            color: #e53935;
+            margin-bottom: 1rem;
+        }
+        .tech-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .tech-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 30px;
+            height: 4px;
+            background: #e53935;
+            border-radius: 2px;
+        }
+        .timeline-points {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        .timeline-point {
+            text-align: center;
+            width: 20%;
+            position: relative;
+            padding-top: 25px;
+        }
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #e53935;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 5px rgba(229, 57, 53, 0.3);
+            z-index: 2;
+        }
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-event {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .companies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        .company {
+            width: 30%;
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #e53935;
+        }
+        .company:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .company-name i {
+            margin-right: 0.8rem;
+        }
+        .company-desc {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .chart-container {
+            height: 280px;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-challenges {
+            display: flex;
+            margin-top: 1rem;
+        }
+        .benefits, .challenges {
+            flex: 1;
+        }
+        .benefits {
+            margin-right: 1rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.8rem;
+        }
+        .list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        .list li i {
+            color: #e53935;
+            margin-right: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        .benefits .list li i {
+            color: #4caf50;
+        }
+        .challenges .list li i {
+            color: #f44336;
+        }
+        
+        .data-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #e53935;
+            display: flex;
+            align-items: center;
+        }
+        .data-icon {
+            font-size: 3rem;
+            color: #b71c1c;
+            margin-right: 1.5rem;
+        }
+        .data-info {
+            flex-grow: 1;
+        }
+        .data-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #b71c1c;
+            margin-bottom: 0.5rem;
+        }
+        .data-desc {
+            font-size: 1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">자율주행 자동차 기술</h1>
+            <p class="subtitle">자율주행 단계 설명, 핵심 기술, 기업들의 개발 동향</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-car"></i>자율주행 단계 (SAE 기준)</h2>
+                    <div class="levels">
+                        <div class="level level-1">
+                            <div class="level-number">1</div>
+                            <div class="level-name">운전자 보조</div>
+                            <div class="level-desc">차선 유지, 가속/감속 중 하나만 지원</div>
+                        </div>
+                        
+                        <div class="level level-2">
+                            <div class="level-number">2</div>
+                            <div class="level-name">부분 자동화</div>
+                            <div class="level-desc">차선 유지와 가속/감속 동시 지원</div>
+                        </div>
+                        
+                        <div class="level level-3">
+                            <div class="level-number">3</div>
+                            <div class="level-name">조건부 자동화</div>
+                            <div class="level-desc">특정 조건에서 운전 자동화, 필요 시 운전자 개입</div>
+                        </div>
+                        
+                        <div class="level level-4">
+                            <div class="level-number">4</div>
+                            <div class="level-name">고도 자동화</div>
+                            <div class="level-desc">특정 조건에서 모든 운전 기능 자동화</div>
+                        </div>
+                        
+                        <div class="level level-5">
+                            <div class="level-number">5</div>
+                            <div class="level-name">완전 자동화</div>
+                            <div class="level-desc">모든 조건에서 운전자 없이 자율주행</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-points">
+                            <div class="timeline-point">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2020</div>
+                                <div class="timeline-event">레벨 2~3 상용화</div>
+                            </div>
+                            
+                            <div class="timeline-point">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2025</div>
+                                <div class="timeline-event">레벨 4 도입</div>
+                            </div>
+                            
+                            <div class="timeline-point">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2030</div>
+                                <div class="timeline-event">자율주행 보편화</div>
+                            </div>
+                            
+                            <div class="timeline-point">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2035</div>
+                                <div class="timeline-event">도시 내 완전 자율주행</div>
+                            </div>
+                            
+                            <div class="timeline-point">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2040</div>
+                                <div class="timeline-event">레벨 5 완전 상용화</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-microchip"></i>핵심 기술</h2>
+                    <div class="tech-container">
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="tech-name">비전 센서</div>
+                            <div class="tech-desc">카메라 기반 실시간 주변 환경 인식</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <div class="tech-name">라이다 (LiDAR)</div>
+                            <div class="tech-desc">레이저로 물체 감지, 거리 측정</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-satellite-dish"></i>
+                            </div>
+                            <div class="tech-name">레이더</div>
+                            <div class="tech-desc">전파로 거리, 속도, 각도 측정</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="tech-name">HD 지도</div>
+                            <div class="tech-desc">고정밀 3D 지도 기반 위치 파악</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="tech-name">AI/딥러닝</div>
+                            <div class="tech-desc">환경 분석, 의사결정, 주행 계획</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="tech-name">V2X 통신</div>
+                            <div class="tech-desc">차량-인프라-사물 간 정보 공유</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="tech-name">엣지 컴퓨팅</div>
+                            <div class="tech-desc">실시간 데이터 처리 및 분석</div>
+                        </div>
+                        
+                        <div class="tech">
+                            <div class="tech-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="tech-name">사이버 보안</div>
+                            <div class="tech-desc">해킹 방지, 제어 시스템 보호</div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-box">
+                        <div class="data-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="data-info">
+                            <div class="data-title">자율주행 데이터</div>
+                            <div class="data-desc">자율주행 차량은 90분마다 약 4테라바이트의 데이터를 생성하며, 이는 실시간으로 처리되어 주행 판단의 기반이 됩니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-chart-line"></i>자율주행 기술 예측</h2>
+                    <div class="chart-container">
+                        <canvas id="adoptionChart"></canvas>
+                    </div>
+                    
+                    <div class="benefits-challenges">
+                        <div class="benefits">
+                            <h3 class="section-title"><i class="fas fa-check-circle"></i>기대효과</h3>
+                            <ul class="list">
+                                <li><i class="fas fa-check"></i>교통사고 90% 감소 예상</li>
+                                <li><i class="fas fa-check"></i>교통 흐름 최적화</li>
+                                <li><i class="fas fa-check"></i>장애인 이동성 증대</li>
+                                <li><i class="fas fa-check"></i>차량 공유 활성화</li>
+                                <li><i class="fas fa-check"></i>운전 중 생산성 향상</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="challenges">
+                            <h3 class="section-title"><i class="fas fa-exclamation-triangle"></i>해결과제</h3>
+                            <ul class="list">
+                                <li><i class="fas fa-times"></i>사고 시 책임 소재</li>
+                                <li><i class="fas fa-times"></i>도로 인프라 구축</li>
+                                <li><i class="fas fa-times"></i>법적 규제 마련</li>
+                                <li><i class="fas fa-times"></i>사이버 보안 위험</li>
+                                <li><i class="fas fa-times"></i>일자리 변화 대응</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-industry"></i>주요 기업 동향</h2>
+                    <div class="companies">
+                        <div class="company">
+                            <h3 class="company-name"><i class="fab fa-google"></i>웨이모 (Waymo)</h3>
+                            <p class="company-desc">구글의 자회사로 SAE 레벨 5 자율주행 개발 선도. 피아트 크라이슬러 미니밴 기반 시험 주행 중</p>
+                        </div>
+                        
+                        <div class="company">
+                            <h3 class="company-name"><i class="fab fa-tesla"></i>테슬라</h3>
+                            <p class="company-desc">오토파일럿과 FSD(Full Self-Driving) 기술 개발. 카메라 중심의 비전 기반 접근법 채택</p>
+                        </div>
+                        
+                        <div class="company">
+                            <h3 class="company-name"><i class="fab fa-apple"></i>애플</h3>
+                            <p class="company-desc">'프로젝트 타이탄'으로 자율주행차 개발 중. 소프트웨어와 하드웨어 통합 접근</p>
+                        </div>
+                        
+                        <div class="company">
+                            <h3 class="company-name"><i class="fab fa-intel"></i>인텔/모빌아이</h3>
+                            <p class="company-desc">153억 달러에 모빌아이 인수. SAE 레벨 4 자율주행차 100대 테스트 중</p>
+                        </div>
+                        
+                        <div class="company">
+                            <h3 class="company-name"><i class="fas fa-car"></i>현대자동차</h3>
+                            <p class="company-desc">2022년 레벨 3 기술 상용화. 앱티브와 협력하여 자율주행 기술 개발 가속화</p>
+                        </div>
+                        
+                        <div class="company">
+                            <h3 class="company-name"><i class="fas fa-map-marker-alt"></i>HERE</h3>
+                            <p class="company-desc">BMW, 아우디, 다임러, 텐센트연합, 인텔이 소유한 HD 지도 서비스 기업</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adoption Chart
+            const adoptionCtx = document.getElementById('adoptionChart').getContext('2d');
+            const adoptionChart = new Chart(adoptionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2025', '2030', '2035', '2040', '2045', '2050'],
+                    datasets: [
+                        {
+                            label: 'SAE 레벨 1-2',
+                            data: [60, 50, 35, 20, 10, 5, 2],
+                            backgroundColor: 'rgba(255, 205, 210, 0.5)',
+                            borderColor: 'rgba(229, 115, 115, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'SAE 레벨 3',
+                            data: [5, 25, 30, 25, 15, 10, 3],
+                            backgroundColor: 'rgba(239, 154, 154, 0.5)',
+                            borderColor: 'rgba(229, 57, 53, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'SAE 레벨 4',
+                            data: [0, 5, 25, 35, 40, 30, 15],
+                            backgroundColor: 'rgba(229, 57, 53, 0.5)',
+                            borderColor: 'rgba(183, 28, 28, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'SAE 레벨 5',
+                            data: [0, 0, 5, 15, 30, 55, 80],
+                            backgroundColor: 'rgba(183, 28, 28, 0.5)',
+                            borderColor: 'rgba(121, 18, 18, 1)',
+                            borderWidth: 2,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '시장 점유율 (%)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '자율주행 기술 수준별 시장 점유율 예측',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: '#b71c1c'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+            
+            // Investment Chart
+            const investmentCtx = document.getElementById('investmentChart').getContext('2d');
+            const investmentChart = new Chart(investmentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['웨이모', '테슬라', '인텔/모빌아이', '애플', '현대자동차', 'GM 크루즈'],
+                    datasets: [{
+                        label: '자율주행 기술 투자액 (억 달러)',
+                        data: [35, 30, 25, 20, 15, 18],
+                        backgroundColor: [
+                            'rgba(183, 28, 28, 0.7)',
+                            'rgba(198, 40, 40, 0.7)',
+                            'rgba(211, 47, 47, 0.7)',
+                            'rgba(229, 57, 53, 0.7)',
+                            'rgba(239, 83, 80, 0.7)',
+                            'rgba(244, 67, 54, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(183, 28, 28, 1)',
+                            'rgba(198, 40, 40, 1)',
+                            'rgba(211, 47, 47, 1)',
+                            'rgba(229, 57, 53, 1)',
+                            'rgba(239, 83, 80, 1)',
+                            'rgba(244, 67, 54, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '투자액 (억 달러)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '기업별 자율주행 기술 투자 현황',
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: '#b71c1c'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

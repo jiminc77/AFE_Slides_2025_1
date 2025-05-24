@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건축과 최첨단 기술</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #fffde7 0%, #fff 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #f9a825, #fdd835);
+            color: #212121;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #f57f17;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+            height: calc(100% - 160px);
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            height: calc(100% - 2rem);
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #fdd835;
+        }
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #f57f17, #fdd835);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            border-left: 3px solid #f57f17;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #f57f17;
+            border: 4px solid #fffde7;
+            box-shadow: 0 0 0 3px rgba(245, 127, 23, 0.3);
+        }
+        .timeline-date {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-description {
+            font-size: 1rem;
+            color: #555;
+        }
+        .landmark-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .landmark-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+        }
+        .landmark-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .landmark-image {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+        }
+        .landmark-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 100px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            transition: all 0.3s ease;
+        }
+        .landmark-content {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .landmark-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 0.5rem;
+        }
+        .landmark-tech {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .chart-container {
+            height: 300px;
+            margin-top: 2rem;
+        }
+        .tech-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .tech-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tech-icon {
+            background: #fffde7;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: #f57f17;
+            font-size: 1.8rem;
+        }
+        .tech-content {
+            flex-grow: 1;
+        }
+        .tech-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+        .tech-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin: 1rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">건축과 최첨단 기술</h1>
+            <p class="subtitle">역사 속 건축기술 발전과 랜드마크 건축물의 의미</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-landmark"></i>건축의 기술 진화</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">기원전 2500년경</div>
+                            <div class="timeline-title">고인돌 (한국)</div>
+                            <div class="timeline-description">거대한 돌을 운반하여 받침돌 위에 얹는 기술. 경사로와 롤러 시스템을 이용한 초기 기계 공학의 사례</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">기원전 2560년경</div>
+                            <div class="timeline-title">피라미드 (이집트)</div>
+                            <div class="timeline-description">230만 개의 돌을 정확한 측량과 천문학적 계산으로 배치. 동서남북 정확히 정렬된 건축 기법</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1931년</div>
+                            <div class="timeline-title">엠파이어 스테이트 빌딩 (미국)</div>
+                            <div class="timeline-description">단 20개월 만에 완공된 102층 고층 건물. 당시 세계 최고층 건물(443m)로 41년간 기록 유지</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">2010년대</div>
+                            <div class="timeline-title">초고층 빌딩의 시대</div>
+                            <div class="timeline-description">부르즈 칼리파(829.8m), 상하이타워, 롯데월드타워 등 첨단 구조 공학과 건축 기술의 집합체</div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">현재와 미래</div>
+                            <div class="timeline-title">인간 중심형 스마트 건축</div>
+                            <div class="timeline-description">AI와 IoT를 활용한 거주자 맞춤형 환경 제어, 에너지 효율화 및 지속 가능성 강조</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-building"></i>랜드마크 건축물과 기술</h2>
+                    
+                    <div class="landmark-grid">
+                        <div class="landmark-card">
+                            <div class="landmark-image" style="background-color: #e0e0e0; background-image: url('placeholder-dolmen.jpg');"></div>
+                            <div class="landmark-image-overlay"></div>
+                            <div class="landmark-content">
+                                <div class="landmark-title">고인돌 (한국)</div>
+                                <div class="landmark-tech">
+                                    <strong>핵심 기술:</strong> 경사로 시공, 통나무 롤러, 인력 효율화
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="landmark-card">
+                            <div class="landmark-image" style="background-color: #e0e0e0; background-image: url('placeholder-pyramid.jpg');"></div>
+                            <div class="landmark-image-overlay"></div>
+                            <div class="landmark-content">
+                                <div class="landmark-title">피라미드 (이집트)</div>
+                                <div class="landmark-tech">
+                                    <strong>핵심 기술:</strong> 정밀 측량, 천문학적 정렬, 석재 운반 기술
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="landmark-card">
+                            <div class="landmark-image" style="background-color: #e0e0e0; background-image: url('placeholder-empire-state.jpg');"></div>
+                            <div class="landmark-image-overlay"></div>
+                            <div class="landmark-content">
+                                <div class="landmark-title">엠파이어 스테이트 빌딩</div>
+                                <div class="landmark-tech">
+                                    <strong>핵심 기술:</strong> 철골 구조, 고속 엘리베이터, 내풍 설계
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="landmark-card">
+                            <div class="landmark-image" style="background-color: #e0e0e0; background-image: url('placeholder-burj-khalifa.jpg');"></div>
+                            <div class="landmark-image-overlay"></div>
+                            <div class="landmark-content">
+                                <div class="landmark-title">부르즈 칼리파 (UAE)</div>
+                                <div class="landmark-tech">
+                                    <strong>핵심 기술:</strong> 번들 튜브 구조, 고강도 콘크리트, 스마트 시스템
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="chart-title">건축 기술 발전과 인간 중심 기술</h3>
+                    <div class="chart-container">
+                        <canvas id="architectureChart"></canvas>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <div class="tech-item">
+                            <div class="tech-icon">
+                                <i class="fas fa-temperature-low"></i>
+                            </div>
+                            <div class="tech-content">
+                                <div class="tech-title">온돌</div>
+                                <div class="tech-desc">한국 전통의 바닥 난방 시스템으로, 열 효율과 축열 특성을 활용한 인간 중심 기술</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-item">
+                            <div class="tech-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="tech-content">
+                                <div class="tech-title">AI 기반 실내환경 제어</div>
+                                <div class="tech-desc">거주자 행동 패턴 분석을 통한 맞춤형 온도, 습도, 조명 제어 시스템</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('architectureChart').getContext('2d');
+            const architectureChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['기술 복잡성', '인간 중심성', '자원 효율성', '지속가능성', '규모', '건설 속도'],
+                    datasets: [
+                        {
+                            label: '고대 건축',
+                            data: [40, 60, 30, 80, 40, 20],
+                            backgroundColor: 'rgba(245, 127, 23, 0.2)',
+                            borderColor: 'rgba(245, 127, 23, 0.8)',
+                            pointBackgroundColor: 'rgba(245, 127, 23, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(245, 127, 23, 1)'
+                        },
+                        {
+                            label: '20세기 초 건축',
+                            data: [70, 50, 45, 40, 75, 60],
+                            backgroundColor: 'rgba(253, 216, 53, 0.2)',
+                            borderColor: 'rgba(253, 216, 53, 0.8)',
+                            pointBackgroundColor: 'rgba(253, 216, 53, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(253, 216, 53, 1)'
+                        },
+                        {
+                            label: '현대 스마트 건축',
+                            data: [90, 85, 75, 80, 85, 70],
+                            backgroundColor: 'rgba(249, 168, 37, 0.2)',
+                            borderColor: 'rgba(249, 168, 37, 0.8)',
+                            pointBackgroundColor: 'rgba(249, 168, 37, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(249, 168, 37, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                display: false,
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

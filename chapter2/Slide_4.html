@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인공지능의 작동원리</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto; /* 스크롤 허용 */
+            overflow-x: hidden; /* 가로는 고정 */
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            overflow: hidden;
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 2rem 3rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .content {
+            display: flex;
+            padding: 2rem 3rem;
+        }
+        .left-column {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .right-column {
+            flex: 1;
+            margin-left: 2rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+            color: #3b82f6;
+        }
+        .card-content {
+            font-size: 1.4rem;
+            color: #334155;
+        }
+        .cnn-layers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            position: relative;
+        }
+        .cnn-layers:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #bfdbfe, #3b82f6);
+            z-index: 1;
+        }
+        .layer {
+            width: 120px;
+            height: 160px;
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .layer:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .layer-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+        .layer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .layer-desc {
+            font-size: 0.9rem;
+            color: #475569;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+        .neuron-container {
+            width: 100%;
+            height: 320px;
+            background: white;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .neuron {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
+            z-index: 2;
+        }
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: #93c5fd;
+            z-index: 1;
+            transform-origin: left;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .point-icon {
+            width: 50px;
+            height: 50px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        .point-icon i {
+            font-size: 1.5rem;
+            color: #2563eb;
+        }
+        .point-content {
+            flex: 1;
+        }
+        .point-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .point-desc {
+            font-size: 1.3rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        .formula-section {
+            background: #dbeafe;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .formula-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .formula {
+            font-size: 1.8rem;
+            color: #1e40af;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 500;
+            margin: 1rem 0;
+        }
+        .formula-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .caption {
+            font-size: 1.2rem;
+            color: #475569;
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="title-section">
+            <h1 class="title">인공지능의 작동원리</h1>
+            <p class="subtitle">합성곱신경망(CNN)과 딥러닝 구조 이해하기</p>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="info-card">
+                    <h2 class="card-title"><i class="fas fa-brain"></i> 합성곱신경망(CNN) 구조</h2>
+                    <div class="card-content">
+                        <p>CNN은 인간의 시각 처리 방식에서 영감을 받은 딥러닝 모델로, 이미지를 계층적으로 해석합니다.</p>
+                        
+                        <div class="cnn-layers">
+                            <div class="layer">
+                                <div class="layer-icon">
+                                    <i class="fas fa-border-all"></i>
+                                </div>
+                                <div class="layer-title">입력층</div>
+                                <div class="layer-desc">원본 이미지 픽셀</div>
+                            </div>
+                            
+                            <div class="layer">
+                                <div class="layer-icon">
+                                    <i class="fas fa-grip-lines"></i>
+                                </div>
+                                <div class="layer-title">기본 특징</div>
+                                <div class="layer-desc">엣지, 선, 곡선</div>
+                            </div>
+                            
+                            <div class="layer">
+                                <div class="layer-icon">
+                                    <i class="fas fa-puzzle-piece"></i>
+                                </div>
+                                <div class="layer-title">중간 특징</div>
+                                <div class="layer-desc">눈, 코, 입 등</div>
+                            </div>
+                            
+                            <div class="layer">
+                                <div class="layer-icon">
+                                    <i class="fas fa-object-group"></i>
+                                </div>
+                                <div class="layer-title">고급 특징</div>
+                                <div class="layer-desc">얼굴, 물체 등</div>
+                            </div>
+                            
+                            <div class="layer">
+                                <div class="layer-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="layer-title">출력층</div>
+                                <div class="layer-desc">고양이, 자동차 등 분류</div>
+                            </div>
+                        </div>
+                        
+                        <p class="caption">그림: 합성곱신경망의 계층적 학습 과정</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h2 class="card-title"><i class="fas fa-cogs"></i> 딥러닝의 핵심 원리</h2>
+                    <div class="key-point">
+                        <div class="point-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div class="point-content">
+                            <h3 class="point-title">계층적 구조</h3>
+                            <p class="point-desc">여러 층의 신경망을 통해 저수준 특징에서 고수준 특징으로 정보를 추상화</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="point-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="point-content">
+                            <h3 class="point-title">역전파 학습</h3>
+                            <p class="point-desc">오차를 줄이는 방향으로 가중치를 조정하며 반복 학습</p>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="point-icon">
+                            <i class="fas fa-compress-alt"></i>
+                        </div>
+                        <div class="point-content">
+                            <h3 class="point-title">합성곱 연산</h3>
+                            <p class="point-desc">이미지의 공간적 패턴을 효율적으로 포착하는 수학적 연산</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="info-card">
+                    <h2 class="card-title"><i class="fas fa-network-wired"></i> 인공신경망 구조</h2>
+                    <div class="card-content">
+                        <p>인공신경망은 인간 뇌의 뉴런 구조에서 영감을 받은 수학적 모델입니다.</p>
+                        
+                        <div class="neuron-container" id="neural-network">
+                            <!-- Neural network will be drawn here via JavaScript -->
+                        </div>
+                        
+                        <p class="caption">그림: 인공신경망의 기본 구조 (입력층, 은닉층, 출력층)</p>
+                        
+                        <div class="formula-section">
+                            <h3 class="formula-title">신경망의 기본 수학적 표현</h3>
+                            <div class="formula">
+                                y = h(w₀ + w₁x₁ + w₂x₂ + ... + wₙxₙ)
+                            </div>
+                            <p class="formula-desc">
+                                여기서 x는 입력, w는 가중치, h()는 활성화 함수입니다
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h2 class="card-title"><i class="fas fa-chart-line"></i> 딥러닝의 발전과 한계</h2>
+                    <div class="card-content">
+                        <div class="key-point">
+                            <div class="point-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="point-content">
+                                <h3 class="point-title">성과</h3>
+                                <p class="point-desc">이미지 인식 97% 정확도 달성, 복잡한 게임 정복(알파고)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point">
+                            <div class="point-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="point-content">
+                                <h3 class="point-title">한계</h3>
+                                <p class="point-desc">방대한 학습데이터 필요, 지도학습에 의존, 추론 과정의 블랙박스화</p>
+                            </div>
+                        </div>
+                        
+                        <div class="key-point">
+                            <div class="point-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="point-content">
+                                <h3 class="point-title">미래 방향</h3>
+                                <p class="point-desc">비지도학습 향상, 영상 이해 및 생성 기술 발전(GAN 등)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Draw neural network visualization
+            const container = document.getElementById('neural-network');
+            
+            // Input layer neurons
+            createNeuron(50, 60, 'x₁', container);
+            createNeuron(50, 160, 'x₂', container);
+            createNeuron(50, 260, 'x₃', container);
+            
+            // Hidden layer neurons
+            createNeuron(250, 90, 'h₁', container);
+            createNeuron(250, 160, 'h₂', container);
+            createNeuron(250, 230, 'h₃', container);
+            
+            // Output layer neurons
+            createNeuron(450, 120, 'y₁', container);
+            createNeuron(450, 200, 'y₂', container);
+            
+            // Connections between input and hidden layer
+            createConnection(80, 60, 250, 90, container);
+            createConnection(80, 60, 250, 160, container);
+            createConnection(80, 60, 250, 230, container);
+            
+            createConnection(80, 160, 250, 90, container);
+            createConnection(80, 160, 250, 160, container);
+            createConnection(80, 160, 250, 230, container);
+            
+            createConnection(80, 260, 250, 90, container);
+            createConnection(80, 260, 250, 160, container);
+            createConnection(80, 260, 250, 230, container);
+            
+            // Connections between hidden and output layer
+            createConnection(280, 90, 450, 120, container);
+            createConnection(280, 90, 450, 200, container);
+            
+            createConnection(280, 160, 450, 120, container);
+            createConnection(280, 160, 450, 200, container);
+            
+            createConnection(280, 230, 450, 120, container);
+            createConnection(280, 230, 450, 200, container);
+            
+            // Layer labels
+            createLayerLabel('입력층', 50, 320, container);
+            createLayerLabel('은닉층', 250, 320, container);
+            createLayerLabel('출력층', 450, 320, container);
+            
+            // Animation for cards
+            const cards = document.querySelectorAll('.info-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 * (index + 1));
+            });
+            
+            // Animation for layers
+            const layers = document.querySelectorAll('.layer');
+            layers.forEach((layer, index) => {
+                setTimeout(() => {
+                    layer.style.opacity = '1';
+                    layer.style.transform = 'scale(1)';
+                }, 500 + (200 * index));
+            });
+        });
+        
+        function createNeuron(x, y, text, container) {
+            const neuron = document.createElement('div');
+            neuron.className = 'neuron';
+            neuron.style.left = x + 'px';
+            neuron.style.top = y + 'px';
+            neuron.textContent = text;
+            container.appendChild(neuron);
+        }
+        
+        function createConnection(x1, y1, x2, y2, container) {
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.style.width = length + 'px';
+            connection.style.left = x1 + 'px';
+            connection.style.top = y1 + 'px';
+            connection.style.transform = `rotate(${angle}deg)`;
+            container.appendChild(connection);
+        }
+        
+        function createLayerLabel(text, x, y, container) {
+            const label = document.createElement('div');
+            label.style.position = 'absolute';
+            label.style.left = x - 25 + 'px';
+            label.style.top = y + 'px';
+            label.style.textAlign = 'center';
+            label.style.width = '100px';
+            label.style.fontSize = '1.2rem';
+            label.style.fontWeight = '600';
+            label.style.color = '#1e3a8a';
+            label.textContent = text;
+            container.appendChild(label);
+        }
+    </script>
+</body>
+</html>
