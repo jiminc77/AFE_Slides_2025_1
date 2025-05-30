@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VR의 미래</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 925px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 925px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            display: flex;
+            height: calc(100% - 90px);
+        }
+        .left-column {
+            flex: 1;
+            padding: 2rem;
+        }
+        .right-column {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.8rem;
+            font-size: 1.4rem;
+        }
+        .card-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+        .video-container {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 10px;
+            
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .market-data {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+        .data-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+        .data-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+        .data-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.3rem;
+        }
+        .companies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .company {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        #chart {
+            width: 100%;
+            height: 180px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">VR의 미래: 상상을 현실로 만드는 기술</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-vr-cardboard"></i>가상현실(VR)이란?</h2>
+<div class="card-content">
+<p>가상 혹은 실제 영상을 컴퓨터그래픽 기술을 활용해 3차원 공간상에서 실감나게 표현한 것. 사용자는 헤드 마운트 디스플레이(HMD)를 착용해 생성된 가상현실 공간을 직접 체험</p>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-glasses"></i>증강현실(AR)이란?</h2>
+<div class="card-content">
+<p>가상현실의 한 분야에서 파생된 기술로, 현실세계와 가상의 체험을 결합. 실제 환경에 가상 사물을 합성하여 원래의 환경에 존재하는 사물처럼 보이도록 하는 컴퓨터그래픽 기법</p>
+</div>
+</div>
+<div class="video-container">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="300" src="https://www.youtube.com/embed/7TJzdYu2IQs" title="VR 기술 소개" width="100%"></iframe>
+</div>
+</div>
+<div class="right-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-chart-line"></i>시장 규모 및 전망</h2>
+<div class="card-content">
+<p>미국의 투자은행: 가상현실 시장 규모가 2016년 22억 달러에서 2025년 최대 800억 달러까지 늘어날 것으로 전망. 심지어 1조 5,000억 달러까지 시장 규모가 커질 것으로 예측하는 이들도 있음</p>
+<div id="chart"></div>
+<div class="market-data">
+<div class="data-item">
+<div class="data-value">22억 달러</div>
+<div class="data-label">2016년</div>
+</div>
+<div class="data-item">
+<div class="data-value">800억 달러</div>
+<div class="data-label">2025년 예상</div>
+</div>
+</div>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-industry"></i>주요 투자 기업</h2>
+<div class="card-content">
+<p>구글, 삼성, 애플, 페이스북, 오큘러스 등의 거물 IT 기업들 모두 가상현실 기술에 대한 투자를 늘리는 추세</p>
+<div class="companies">
+<div class="company">구글</div>
+<div class="company">삼성</div>
+<div class="company">애플</div>
+<div class="company">페이스북</div>
+<div class="company">오큘러스</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Simple D3.js chart showing VR market growth
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = [
+                {year: 2016, value: 22},
+                {year: 2025, value: 800}
+            ];
+            
+            const margin = {top: 50, right: 20, bottom: 30, left: 40};
+            const width = document.getElementById('chart').clientWidth - margin.left - margin.right;
+            const height = document.getElementById('chart').clientHeight - margin.top - margin.bottom;
+            
+            const svg = d3.select("#chart").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+                
+            // X scale
+            const x = d3.scaleBand()
+                .domain(data.map(d => d.year))
+                .range([0, width])
+                .padding(0.4);
+                
+            // Y scale
+            const y = d3.scaleLinear()
+                .domain([0, 850])
+                .range([height, 0]);
+                
+            // X axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x))
+                .selectAll("text")
+                .attr("fill", "white")
+                .style("font-size", "12px");
+                
+            // Y axis
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(5))
+                .selectAll("text")
+                .attr("fill", "white")
+                .style("font-size", "12px");
+                
+            // Bars
+            svg.selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.year))
+                .attr("y", d => y(d.value))
+                .attr("width", x.bandwidth())
+                .attr("height", d => height - y(d.value))
+                .attr("fill", "#60a5fa")
+                .attr("rx", 6)
+                .attr("ry", 6);
+                
+            // Labels above bars
+            svg.selectAll(".label")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", "label")
+                .attr("text-anchor", "middle")
+                .attr("x", d => x(d.year) + x.bandwidth() / 2)
+                .attr("y", d => y(d.value) - 10)
+                .text(d => d.value + "억 달러")
+                .attr("fill", "white")
+                .style("font-size", "12px");
+                
+            // Add title
+            svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", -30)
+                .attr("text-anchor", "middle")
+                .style("font-size", "14px")
+                .attr("fill", "white")
+                .text("VR 시장 성장 전망");
+        });
+    </script>
+
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>4차 산업혁명 시대의 신소재</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 874px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 874px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 2rem 3rem 1rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            padding: 1.5rem 3rem;
+            display: flex;
+            height: calc(100% - 110px);
+        }
+        .left-column {
+            flex: 1;
+            padding-right: 1.5rem;
+        }
+        .right-column {
+            flex: 1;
+            padding-left: 1.5rem;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .card-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+        .highlight-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .highlight-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .highlight-title i {
+            margin-right: 0.6rem;
+            font-size: 1.2rem;
+            color: #fcd34d;
+        }
+        .highlight-content {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+        .material-comparison {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 1rem;
+            padding: 1rem 0;
+        }
+        .material-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 45%;
+        }
+        .material-icon {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.8rem;
+        }
+        .material-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .material-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .arrow {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">4차 산업혁명 시대의 신소재</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-lightbulb"></i>일상 소재의 첨단화</h2>
+<div class="card-content">
+<p>4차 산업혁명 시대에는 고가의 신소재뿐 아니라 종이와 같은 일상 소재가 첨단 기술의 핵심이 될 수 있음. 단점으로 여겨지던 특성을 장점으로 전환하는 발상의 전환이 필요</p>
+<div class="material-comparison">
+<div class="material-item">
+<div class="material-icon">
+<i class="fas fa-microchip"></i>
+</div>
+<div class="material-name">실리콘 소재</div>
+<div class="material-desc">원자 수준의 매끄러운 표면</div>
+</div>
+<div class="arrow">
+<i class="fas fa-arrows-alt-h"></i>
+</div>
+<div class="material-item">
+<div class="material-icon">
+<i class="fas fa-newspaper"></i>
+</div>
+<div class="material-name">종이 소재</div>
+<div class="material-desc">마이크로미터 수준의 표면 거칠기</div>
+</div>
+</div>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-touch-app"></i>혁신적 압력 센서 기술</h2>
+<div class="card-content">
+<p>종이의 거친 표면은 압력 센서에서 공기층을 형성하여 상대유전율을 조절할 수 있는 장점이 됨. 연필로 그린 전극만으로도 고감도 압력 센서를 구현 가능</p>
+<div class="highlight-box">
+<h3 class="highlight-title"><i class="fas fa-star"></i>응용 분야</h3>
+<p class="highlight-content">3D 포스터치 키보드, 헬스케어 장치, 지능형 자동차, 웨어러블 기기</p>
+</div>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-battery-full"></i>유연한 배터리 기술</h2>
+<div class="card-content">
+<p>종이의 접히고, 구부러지고, 말리는 특성을 활용하여 다양한 물리적 변형에 안정적인 배터리 개발이 가능. 종이의 거친 표면은 배터리 소재의 박리 문제를 해결</p>
+<div class="highlight-box">
+<h3 class="highlight-title"><i class="fas fa-star"></i>기술 장점</h3>
+<p class="highlight-content">휘어짐, 늘어남, 접힘, 구겨짐 등 다양한 변형 상태에서도 안정적인 출력 특성 유지</p>
+</div>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-globe"></i>미래 기술의 가능성</h2>
+<div class="card-content">
+<p>4차 산업혁명에서는 사물의 초연결과 데이터 기반 서비스가 핵심. 이를 위해서는 감각과 지능성을 갖춘 저비용 소재가 필수적</p>
+<div class="highlight-box">
+<h3 class="highlight-title"><i class="fas fa-quote-left"></i>핵심 통찰</h3>
+<p class="highlight-content">&#34;첨단 기술의 구현은 반드시 고가의 신소재를 필요로 하는 것이 아니라, 기술 구현에 적합한 특성을 가진 소재가 필요한 것이며, 이러한 관점에서 우리 주위의 모든 소재들이 미래에는 신소재가 될 수 있음&#34;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

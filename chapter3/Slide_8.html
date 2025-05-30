@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>인공 생명체와 윤리적 고민</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 827px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 827px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            display: flex;
+            height: calc(100% - 90px);
+        }
+        .left-column {
+            flex: 1;
+            padding: 2rem;
+            border-right: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .right-column {
+            flex: 1;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.8rem;
+            font-size: 1.8rem;
+        }
+        .info-item {
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .info-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+        .info-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #bfdbfe;
+            font-weight: 500;
+        }
+        .quote-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #dbeafe;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quote-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .video-container {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 8px;
+            
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+        .ethics-principle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 6px;
+        }
+        .ethics-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        .ethics-icon i {
+            font-size: 1.2rem;
+            color: white;
+        }
+        .ethics-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .year-tag {
+            display: inline-block;
+            background: rgba(219, 234, 254, 0.2);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">인공 생명체와 윤리적 고민</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<h2 class="section-title"><i class="fas fa-flask"></i>합성생물학의 성과</h2>
+<div class="info-item">
+<p class="info-text"><span class="year-tag">2010</span> 크레이그 벤터 연구진이 <span class="highlight">세계 최초로 합성 유전체를 가진 세균</span>을 창조하는 데 성공</p>
+</div>
+<div class="info-item">
+<p class="info-text">마이코플라스마 세균의 유전체를 인공적으로 합성하고 이식하여 정상적인 생명 기능을 수행하는 &#39;합성세포&#39; 탄생</p>
+</div>
+<div class="info-item">
+<p class="info-text"><span class="year-tag">2016</span> 하버드 대학에서 <span class="highlight">인간 유전체 합성 연구</span>에 관한 비공개 회의 개최로 논란 발생</p>
+</div>
+<div class="info-item">
+<p class="info-text">10년 안에 인간 유전체를 완벽하게 합성하는 것을 목표로 하는 국제 프로젝트 논의</p>
+</div>
+<div class="video-container">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="259" src="https://www.youtube.com/embed/5SZP7ys96p8" width="460"></iframe>
+</div>
+</div>
+<div class="right-column">
+<h2 class="section-title"><i class="fas fa-balance-scale"></i>윤리적 고민과 사회적 책임</h2>
+<div class="quote-box">
+<p class="quote-text">&#34;아인슈타인의 유전체를 합성하는 것이 과연 옳은 일인가. 가능하다면 누가 할 것이며, 얼마나 많이 복제할 것인가&#34;</p>
+</div>
+<div class="ethics-principle">
+<div class="ethics-icon">
+<i class="fas fa-hands-helping"></i>
+</div>
+<p class="ethics-text"><span class="highlight">공익성</span> - 기술 발전이 사회 전체의 이익에 기여하는가</p>
+</div>
+<div class="ethics-principle">
+<div class="ethics-icon">
+<i class="fas fa-clipboard-check"></i>
+</div>
+<p class="ethics-text"><span class="highlight">책무</span> - 연구자와 기업의 책임 있는 기술 개발과 활용</p>
+</div>
+<div class="ethics-principle">
+<div class="ethics-icon">
+<i class="fas fa-lightbulb"></i>
+</div>
+<p class="ethics-text"><span class="highlight">지적 자유와 책임</span> - 연구의 자유와 사회적 책임 간의 균형</p>
+</div>
+<div class="ethics-principle">
+<div class="ethics-icon">
+<i class="fas fa-comments"></i>
+</div>
+<p class="ethics-text"><span class="highlight">민주적 숙의과정</span> - 기술 발전에 대한 사회적 합의 도출</p>
+</div>
+<div class="ethics-principle">
+<div class="ethics-icon">
+<i class="fas fa-equals"></i>
+</div>
+<p class="ethics-text"><span class="highlight">정의와 공평</span> - 기술 혜택의 공정한 분배</p>
+</div>
+<div class="info-item">
+<p class="info-text">생물학은 다른 학문과 함께 <span class="highlight">과학의 비전을 성찰</span>하고 융합 연구를 통해 미래 발전 방향을 모색해야 함</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

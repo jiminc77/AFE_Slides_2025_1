@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>생명공학: 영화 속 기술의 현실화</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 856px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 856px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            display: flex;
+            height: calc(100% - 100px);
+        }
+        .left-column {
+            flex: 1;
+            padding: 2rem 2rem 2rem 3rem;
+        }
+        .right-column {
+            flex: 1;
+            padding: 2rem 3rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .card-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        .timeline {
+            position: relative;
+            margin: 1rem 0 2rem;
+            padding-left: 1.5rem;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.2rem;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+        }
+        .timeline-year {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #bfdbfe;
+        }
+        .timeline-text {
+            font-size: 1rem;
+            color: white;
+        }
+        .video-container {
+            margin-top: auto;
+            border-radius: 8px;
+            
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+        .highlight {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-wrapper">
+<div class="title-section">
+<h1 class="title">생명공학: 영화 속 기술의 현실화</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-dna"></i>생명의 설계도를 읽고 쓰다</h2>
+<p class="card-content">
+                            인류는 DNA 구조의 발견(1953년)에서 시작해 인간유전체사업(HGP) 완료(2000년대 초반)에 이르기까지 생명의 설계도를 해독. 이제는 <span class="highlight">합성생물학(Synthetic Biology)</span>을 통해 생명체를 맞춤형으로 변형하고 창조하는 단계에 이르름
+                        </p>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-year">1839-1905</div>
+<div class="timeline-text">DNA 연구의 시작과 광전효과 발견</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">1970년</div>
+<div class="timeline-text">제한효소 발견 - DNA를 자르는 &#39;유전자 가위&#39;</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2000년대 초반</div>
+<div class="timeline-text">인간유전체사업(HGP) 완료 - 30억 염기쌍 해독</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2004년</div>
+<div class="timeline-text">합성생물학 첫 국제학술회의 &#39;Synthetic Biology 1.0&#39; 개최</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2010년</div>
+<div class="timeline-text">크레이그 벤터 - 세계 최초 합성세포 창조</div>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-flask"></i>유전자 재조합 기술</h2>
+<p class="card-content">
+                            &#39;유전자는 소속에 얽매이지 않는다&#39; - DNA에 있는 유전 정보는 다른 생물의 세포 안에서도 작동함. 제한효소(유전자 가위)와 리가아제(유전자 풀)를 이용해 유전자를 자르고 이어붙이는 재조합 기술이 유전공학의 핵심
+                        </p>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-exclamation-triangle"></i>윤리적 고민과 미래</h2>
+<p class="card-content">
+                            2008년 미국은 <span class="highlight">유전자 정보 차별금지법(GINA)</span>을 제정하여 영화 &#39;가타카&#39;와 같은 유전자 차별 사회를 방지하고자 함. 생명 설계의 경계가 흐려질수록 과학자들은 생명윤리에 대한 더 깊은 성찰이 필요
+                        </p>
+</div>
+<div class="video-container">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="225" src="https://www.youtube.com/embed/5SZP7ys96p8" width="100%"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

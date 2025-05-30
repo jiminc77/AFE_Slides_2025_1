@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>태양 에너지: 완벽한 수확을 향해</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 823px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 823px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 2.5rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            height: calc(100% - 100px);
+        }
+        .column {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .left-column {
+            border-right: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+            flex: 1;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.6rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .card-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+        .key-fact {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.6rem;
+            border-radius: 8px;
+        }
+        .key-fact i {
+            font-size: 1.2rem;
+            color: #93c5fd;
+            margin-right: 0.8rem;
+            width: 24px;
+            text-align: center;
+        }
+        .key-fact-text {
+            font-size: 1rem;
+            color: white;
+        }
+        .process-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+        }
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .step-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .step-text {
+            font-size: 0.9rem;
+            color: white;
+            text-align: center;
+        }
+        .arrow {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.5rem;
+        }
+        .video-container {
+            margin-top: 1rem;
+            border-radius: 8px;
+            
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">태양 에너지: 완벽한 수확을 향해</h1>
+</div>
+<div class="content-section">
+<div class="column left-column">
+<h2 class="section-title"><i class="fas fa-solar-panel"></i>태양광 발전</h2>
+<div class="info-card">
+<h3 class="card-title"><i class="fas fa-sun"></i>무한한 에너지원</h3>
+<div class="card-content">
+<div class="key-fact">
+<i class="fas fa-bolt"></i>
+<p class="key-fact-text">지구는 매일 태양으로부터 <span class="highlight">235,000 테라와트(TW)</span>의 에너지를 받음</p>
+</div>
+<div class="key-fact">
+<i class="fas fa-chart-line"></i>
+<p class="key-fact-text">인류 필요 에너지의 <span class="highlight">5,000배</span>에 달하는 풍부한 에너지원</p>
+</div>
+<div class="key-fact">
+<i class="fas fa-industry"></i>
+<p class="key-fact-text">2016년 세계 태양광 설치량: <span class="highlight">70기가와트</span> 이상 (원자력 발전소 70기 상당)</p>
+</div>
+<p>태양광 발전은 광전효과를 이용해 태양 에너지를 직접 전기로 변환하는 기술. 반도체 소재에 빛이 닿으면 전자와 정공이 생성되어 전기가 발생</p>
+</div>
+</div>
+<div class="video-container">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="180" src="https://www.youtube.com/embed/HgZaNP_SOaE" width="100%"></iframe>
+</div>
+</div>
+<div class="column">
+<h2 class="section-title"><i class="fas fa-tint"></i>광전기화학 물분해</h2>
+<div class="info-card">
+<h3 class="card-title"><i class="fas fa-flask"></i>수소 생산 기술</h3>
+<div class="card-content">
+<p>광전기화학 물분해는 태양광을 이용해 물(H₂O)을 직접 분해하여 수소를 생산하는 청정 기술. 이는 태양 전지와 물분해 전해조를 별도로 사용하지 않고 <span class="highlight">한 번에 수소를 제조</span>할 수 있는 획기적인 방법</p>
+<div class="process-visual">
+<div class="process-step">
+<div class="step-icon">
+<i class="fas fa-sun"></i>
+</div>
+<p class="step-text">태양광</p>
+</div>
+<div class="arrow">→</div>
+<div class="process-step">
+<div class="step-icon">
+<i class="fas fa-microchip"></i>
+</div>
+<p class="step-text">광전극</p>
+</div>
+<div class="arrow">→</div>
+<div class="process-step">
+<div class="step-icon">
+<i class="fas fa-water"></i>
+</div>
+<p class="step-text">물분해</p>
+</div>
+<div class="arrow">→</div>
+<div class="process-step">
+<div class="step-icon">
+<i class="fas fa-atom"></i>
+</div>
+<p class="step-text">수소 생산</p>
+</div>
+</div>
+<p>광전극은 태양광을 흡수해 전자-홀 쌍을 형성하고, 이 전자들이 물의 환원에 직접 활용되어 수소를 생산. 이는 궁극적으로 식물의 광합성을 모방한 기술로, 장기적으로는 물과 이산화탄소로부터 알코올 등 유용한 물질 생산도 가능</p>
+<div class="key-fact" style="margin-top: 1rem;">
+<i class="fas fa-lightbulb"></i>
+<p class="key-fact-text">사용 후 물로 재순환되는 <span class="highlight">완벽한 친환경 사이클</span> 구현 가능</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

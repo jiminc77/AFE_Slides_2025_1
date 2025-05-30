@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>지속가능한 에너지 미래</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 1067px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 1067px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 2rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            display: flex;
+            padding: 1.5rem;
+            height: calc(100% - 120px);
+        }
+        .left-column {
+            flex: 1;
+            padding: 1rem;
+        }
+        .right-column {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.8rem;
+            font-size: 1.4rem;
+            color: #93c5fd;
+        }
+        .card-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #bfdbfe;
+            font-weight: 500;
+        }
+        .cycle-container {
+            height: 300px;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .stat-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .stat-title {
+            font-size: 1.1rem;
+            color: #dbeafe;
+            margin-bottom: 0.5rem;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+        .stat-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.3rem;
+        }
+        .conclusion {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: auto;
+            border-left: 4px solid #93c5fd;
+        }
+        .conclusion-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .conclusion-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+        .youtube-container {
+            border-radius: 8px;
+            
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">지속가능한 에너지 미래</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-solar-panel"></i> 태양광 에너지의 잠재력</h2>
+<div class="card-content">
+<p>지구는 매일 태양으로부터 <span class="highlight">235,000테라와트(TW)</span>의 에너지를 받고 있으며, 이는 2050년 인류가 필요로 할 것으로 예상되는 <span class="highlight">50테라와트</span>의 약 <span class="highlight">5,000배</span>에 달하는 양</p>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-water"></i> 광전기화학 물분해 기술</h2>
+<div class="card-content">
+<p>가장 친환경적인 수소 제조 방법인 <span class="highlight">광전기화학 물분해</span>는 태양광으로부터 수소와 산소를 직접 제조하는 혁신적 기술. 기존의 고비용 시스템 없이 물과 태양광만으로 청정 수소를 생산</p>
+</div>
+</div>
+<div class="conclusion">
+<h3 class="conclusion-title">미래를 위한 과제</h3>
+<p class="conclusion-content">태양광을 이용한 수소 생산 기술에 대한 장기적 투자와 연구가 필요. 국내 연구비 수준은 아직 미미하지만, 기술 확보를 통해 단기간 내 선진국 수준의 기술 확보가 가능</p>
+</div>
+<div class="youtube-container" style="margin-top: 1rem;">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="287" src="https://www.youtube.com/embed/PAf-tcSyJSM" width="100%"></iframe>
+</div>
+</div>
+<div class="right-column">
+<div class="cycle-container" id="energy-cycle"></div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-recycle"></i> 완벽한 에너지 순환 시스템</h2>
+<div class="card-content">
+<p>태양광으로부터 수소를 생산하고, 필요할 때 연료전지를 통해 전기를 생산하는 순환 시스템을 구축하면 배출물이 <span class="highlight">물(H₂O)</span>밖에 없는 완벽한 친환경 에너지 체계가 완성</p>
+</div>
+</div>
+<div class="info-card">
+<h2 class="card-title"><i class="fas fa-leaf"></i> 광합성 모방 시스템</h2>
+<div class="card-content">
+<p>궁극적으로는 식물 내의 광합성을 모방하여 물과 이산화탄소로부터 알코올 등을 생산하는 시스템을 구현 목표, 이러한 순환 공정이 실현된다면 인류의 에너지와 환경 문제를 동시에 해결 가능</p>
+</div>
+</div>
+<div class="stat-container">
+<div class="stat-title">세계 태양광 설치량 (2016년)</div>
+<div class="stat-value">70+ 기가와트</div>
+<div class="stat-desc">이는 원자력 발전소 약 70개에 해당하는 규모</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create energy cycle visualization
+            const width = document.getElementById('energy-cycle').offsetWidth;
+            const height = document.getElementById('energy-cycle').offsetHeight;
+            
+            const svg = d3.select('#energy-cycle')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .style('overflow', 'visible');
+            
+            // Create a circular flow diagram
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const radius = Math.min(width, height) / 3;
+            
+            // Define elements of the cycle
+            const elements = [
+                { name: '태양', icon: '\uf185', color: '#fcd34d', angle: 0 },
+                { name: '물', icon: '\uf043', color: '#60a5fa', angle: 72 },
+                { name: '수소', icon: '\uf402', color: '#a78bfa', angle: 144 },
+                { name: '연료전지', icon: '\uf5df', color: '#34d399', angle: 216 },
+                { name: '전기/열', icon: '\uf0e7', color: '#f87171', angle: 288 }
+            ];
+            
+            // Create nodes
+            const nodes = svg.selectAll('.node')
+                .data(elements)
+                .enter()
+                .append('g')
+                .attr('class', 'node')
+                .attr('transform', d => {
+                    const x = centerX + radius * Math.cos(d.angle * Math.PI / 180);
+                    const y = centerY + radius * Math.sin(d.angle * Math.PI / 180);
+                    return `translate(${x}, ${y})`;
+                });
+            
+            // Create circles for nodes
+            nodes.append('circle')
+                .attr('r', 30)
+                .attr('fill', d => d.color)
+                .attr('stroke', 'white')
+                .attr('stroke-width', 2)
+                .attr('opacity', 0.8);
+            
+            // Add icons to nodes
+            nodes.append('text')
+                .attr('font-family', 'FontAwesome')
+                .attr('text-anchor', 'middle')
+                .attr('dominant-baseline', 'central')
+                .attr('fill', 'white')
+                .attr('font-size', '20px')
+                .text(d => d.icon);
+            
+            // Add labels below nodes
+            nodes.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('y', 45)
+                .attr('fill', 'white')
+                .attr('font-size', '14px')
+                .attr('font-weight', '500')
+                .text(d => d.name);
+            
+            // Create curved paths connecting the nodes
+            for (let i = 0; i < elements.length; i++) {
+                const start = elements[i];
+                const end = elements[(i + 1) % elements.length];
+                
+                const startX = centerX + radius * Math.cos(start.angle * Math.PI / 180);
+                const startY = centerY + radius * Math.sin(start.angle * Math.PI / 180);
+                
+                const endX = centerX + radius * Math.cos(end.angle * Math.PI / 180);
+                const endY = centerY + radius * Math.sin(end.angle * Math.PI / 180);
+                
+                // Calculate control points for curved path
+                const controlX = centerX + (radius * 0.8) * Math.cos(((start.angle + end.angle) / 2) * Math.PI / 180);
+                const controlY = centerY + (radius * 0.8) * Math.sin(((start.angle + end.angle) / 2) * Math.PI / 180);
+                
+                // Create path
+                svg.append('path')
+                    .attr('d', `M${startX},${startY} Q${controlX},${controlY} ${endX},${endY}`)
+                    .attr('fill', 'none')
+                    .attr('stroke', 'rgba(255, 255, 255, 0.6)')
+                    .attr('stroke-width', 2)
+                    .attr('marker-end', 'url(#arrowhead)')
+                    .attr('stroke-dasharray', '5,3');
+                
+                // Add animated circle along the path
+                const circle = svg.append('circle')
+                    .attr('r', 4)
+                    .attr('fill', 'white')
+                    .attr('opacity', 0.8);
+                
+                // Animate the circle along the path
+                function animateCircle() {
+                    circle.transition()
+                        .duration(2000)
+                        .attrTween('cx', function() {
+                            return function(t) {
+                                const x = startX * (1 - t) * (1 - t) + controlX * 2 * (1 - t) * t + endX * t * t;
+                                return x;
+                            };
+                        })
+                        .attrTween('cy', function() {
+                            return function(t) {
+                                const y = startY * (1 - t) * (1 - t) + controlY * 2 * (1 - t) * t + endY * t * t;
+                                return y;
+                            };
+                        })
+                        .on('end', animateCircle);
+                }
+                
+                animateCircle();
+            }
+            
+            // Add a title to the visualization
+            svg.append('text')
+                .attr('x', centerX)
+                .attr('y', 20)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'white')
+                .attr('font-size', '18px')
+                .attr('font-weight', '600')
+                .text('태양-수소 에너지 순환 시스템');
+        });
+    </script>
+
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>투명 망토: SF에서 현실로</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 781px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 781px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            display: flex;
+            height: calc(100% - 90px);
+        }
+        .left-column {
+            flex: 1;
+            padding: 1.5rem 2rem;
+        }
+        .right-column {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .concept-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+        .concept-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+        }
+        .concept-title i {
+            margin-right: 0.7rem;
+            font-size: 1.2rem;
+        }
+        .concept-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+        .video-container {
+            width: 560px;
+            height: 315px;
+            margin: 0 auto;
+            border-radius: 10px;
+            
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">투명 망토: SF에서 현실로</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="concept-card">
+<h2 class="concept-title">
+<i class="fas fa-eye"></i> 인간의 시각 원리
+                        </h2>
+<p class="concept-content">
+                            우리가 물체를 보는 것은 대상으로부터 반사된 빛이 우리 눈에 들어오는 것. 이 빛의 경로를 조작하여 물체가 없는 것처럼, "투명 망토" 처럼 보이게 함
+                        </p>
+</div>
+<div class="concept-card">
+<h2 class="concept-title">
+<i class="fas fa-bezier-curve"></i> 메타물질의 원리
+                        </h2>
+<p class="concept-content">
+                            메타물질은 자연에 존재하지 않는 특성을 가진 인공 물질, <span class="highlight">음의 굴절률</span>을 가질 수 있음. 빛의 파장보다 작은 미세구조를 통해 빛의 경로를 비정상적으로 변화
+                        </p>
+</div>
+<div class="concept-card">
+<h2 class="concept-title">
+<i class="fas fa-magic"></i> 투명 망토의 구현
+                        </h2>
+<p class="concept-content">
+                            2006년 듀크 대학의 스미스 교수와 영국 임페리얼 칼리지의 펜드리 교수는 메타물질을 이용해 전자기파를 물체 주위로 우회시키는 방법으로 투명 망토를 구현. 이후 2012년 연세대에서는 접거나 구부려도 작동하는 스마트 메타물질 개발에 성공.
+                        </p>
+</div>
+</div>
+<div class="right-column">
+<div class="video-container">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/68P0MiIdp1c" width="560"></iframe>
+</div>
+<div class="concept-card mt-4">
+<h2 class="concept-title">
+<i class="fas fa-lightbulb"></i> 핵심 기술적 진보
+                        </h2>
+<p class="concept-content">
+                            초기 투명 망토는 고정된 형상만 가능했으나, 2017년에는 나노 기술을 이용한 가시광 영역의 스마트 메타물질이 개발. 에어로젤과 같은 투명하면서도 압축이 잘되는 소재를 활용해 기존보다 약 <span class="highlight">100억 배</span> 큰 부피에서 작동하는 투명 망토 기술이 구현
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

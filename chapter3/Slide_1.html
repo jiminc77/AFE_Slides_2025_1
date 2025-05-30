@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>미래 기술의 현재</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 720px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(to right, #ffffff, #dbeafe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #e0f2fe;
+            margin-bottom: 2rem;
+        }
+        .tech-icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .icon-circle i {
+            font-size: 1.5rem;
+        }
+        .tech-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        .image-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 100%;
+            
+            opacity: 0.9;
+        }
+        .image-container:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #1e40af 0%, rgba(30, 64, 175, 0) 100%);
+            z-index: 1;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="image-container">
+<img alt="생명공학 기술 이미지" class="h-full object-cover" src="https://picture-search.skywork.ai/aippt/image/sheet/05a89437ba75a1c92553d50e5ac32a4a.jpg"/>
+</div>
+<div class="p-16 relative z-10 w-3/5">
+<h1 class="title">미래 기술의 현재:<br/>VR부터 태양 에너지까지</h1>
+<p class="subtitle">현실이 된 과학 기술의 놀라운 진화</p>
+<div class="mt-12">
+<div class="tech-icon">
+<div class="icon-circle">
+<i class="fas fa-vr-cardboard"></i>
+</div>
+<span class="tech-name">VR의 미래, 상상하면 볼 수 있다</span>
+</div>
+<div class="tech-icon">
+<div class="icon-circle">
+<i class="fas fa-hat-wizard"></i>
+</div>
+<span class="tech-name">인간의 감각을 기만하는 소재의 승리, 투명 망토</span>
+</div>
+<div class="tech-icon">
+<div class="icon-circle">
+<i class="fas fa-dna"></i>
+</div>
+<span class="tech-name">영화 속에서 뛰쳐나온 생명공학 기술</span>
+</div>
+<div class="tech-icon">
+<div class="icon-circle">
+<i class="fas fa-newspaper"></i>
+</div>
+<span class="tech-name">평범한 생활용품이 첨단의 소재로 재탄생하다</span>
+</div>
+<div class="tech-icon">
+<div class="icon-circle">
+<i class="fas fa-solar-panel"></i>
+</div>
+<span class="tech-name">태양 에너지를 완벽하게 수확하는 법</span>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>투명 망토의 응용과 미래</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 826px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 826px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 2rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            padding: 1.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .application-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        .application-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+            transform: translateY(-5px);
+        }
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        .app-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .app-content {
+            flex: 1;
+        }
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .app-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+        .future-section {
+            margin-top: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .future-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .future-title i {
+            margin-right: 0.8rem;
+        }
+        .future-content {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">투명 망토의 응용과 미래</h1>
+</div>
+<div class="content-section">
+<div class="applications-grid">
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-fighter-jet"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">스텔스 기술</h3>
+<p class="app-desc">전투기나 군함에 메타물질을 활용하여 전파가 주변으로 돌아가게 함으로써 적에게 탐지되지 않는 새로운 스텔스 기술 구현 가능</p>
+</div>
+</div>
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-house-damage"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">지진파 차단</h3>
+<p class="app-desc">건물 주위에 메타물질 구조체를 설치하여 지진파가 내부로 들어오지 못하고 주변으로 돌아가게 하는 완벽한 내진 기술 개발</p>
+</div>
+</div>
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-water"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">쓰나미 방어</h3>
+<p class="app-desc">지진파와 동일한 원리로 쓰나미 파도를 우회시켜 해안가 건물과 시설물을 보호하는 방어 시스템 구현 가능</p>
+</div>
+</div>
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-ship"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">조선 산업 응용</h3>
+<p class="app-desc">배가 진행할 때 생기는 파도로 인한 저항력을 줄여 배의 연비를 획기적으로 향상시킬 수 있는 메타물질 기술 개발</p>
+</div>
+</div>
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-volume-mute"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">소음 차단</h3>
+<p class="app-desc">아파트 층간 소음 등을 메타물질 구조로 완벽하게 차단하여 소리가 전달되지 않도록 하는 소음 제거 시스템 구현</p>
+</div>
+</div>
+<div class="application-card">
+<div class="app-icon">
+<i class="fas fa-microscope"></i>
+</div>
+<div class="app-content">
+<h3 class="app-title">대면적 가시광 나노소재</h3>
+<p class="app-desc">에어로젤을 활용한 대면적 가시광 변환광학 나노소재 개발로 자연광 대면적 투명 망토 구현을 향한 발전</p>
+</div>
+</div>
+</div>
+<div class="future-section">
+<h3 class="future-title">
+<i class="fas fa-rocket"></i>미래 기술 과제
+                    </h3>
+<p class="future-content">
+                        투명 망토 기술은 현재 기초 개념의 실험적 구현 단계로, 넓은 파장대역의 백색광에서 작동하는 기술과 굴절률 값이 1에 가까워지도록 하는 기술적 문제 해결이 필요. 실생활 응용을 위해 다양한 물리현상에 적용 가능한 메타물질 개발이 진행 중이며, 인류의 꿈을 실현하는 공학의 발전이 기대됨
+                    </p>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

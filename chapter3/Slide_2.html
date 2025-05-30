@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>목차</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 720px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 2rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            padding: 2rem 3rem;
+        }
+        .toc-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .toc-item:hover {
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .icon-container i {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .toc-content {
+            flex: 1;
+        }
+        .toc-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .toc-pages {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-left: 1rem;
+        }
+        .toc-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">목차</h1>
+</div>
+<div class="content-section">
+<div class="toc-item">
+<div class="icon-container">
+<i class="fas fa-vr-cardboard"></i>
+</div>
+<div class="toc-content">
+<h2 class="toc-title">VR의 미래, 상상하면 볼 수 있다 <span class="toc-pages">3-4</span></h2>
+<p class="toc-desc">가상현실(VR)과 증강현실(AR)의 기본 개념, 기술적 문제점과 인간 인식능력의 관점에서 본 해결책</p>
+</div>
+</div>
+<div class="toc-item">
+<div class="icon-container">
+<i class="fas fa-hat-wizard"></i>
+</div>
+<div class="toc-content">
+<h2 class="toc-title">인간의 감각을 기만하는 소재의 승리, 투명 망토 <span class="toc-pages">5-6</span></h2>
+<p class="toc-desc">빛의 굴절을 조작하는 메타물질 기술과 투명 망토의 원리, 다양한 파동에 적용 가능한 미래 기술</p>
+</div>
+</div>
+<div class="toc-item">
+<div class="icon-container">
+<i class="fas fa-dna"></i>
+</div>
+<div class="toc-content">
+<h2 class="toc-title">영화 속에서 뛰쳐나온 생명공학 기술 <span class="toc-pages">7-8</span></h2>
+<p class="toc-desc">DNA 연구에서 합성생물학까지, 인공 생명체 창조와 그에 따른 윤리적 고민과 융합 연구의 필요성</p>
+</div>
+</div>
+<div class="toc-item">
+<div class="icon-container">
+<i class="fas fa-newspaper"></i>
+</div>
+<div class="toc-content">
+<h2 class="toc-title">평범한 생활용품이 첨단의 소재로 재탄생하다 <span class="toc-pages">9-10</span></h2>
+<p class="toc-desc">종이를 활용한 압력 센서와 배터리 기술, 일상 소재의 신소재화를 통한 4차 산업혁명 기술 구현</p>
+</div>
+</div>
+<div class="toc-item">
+<div class="icon-container">
+<i class="fas fa-solar-panel"></i>
+</div>
+<div class="toc-content">
+<h2 class="toc-title">태양 에너지를 완벽하게 수확하는 법 <span class="toc-pages">11-12</span></h2>
+<p class="toc-desc">태양광 에너지의 활용, 태양광을 이용한 수소 제조 기술과 지속가능한 에너지 미래의 비전</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

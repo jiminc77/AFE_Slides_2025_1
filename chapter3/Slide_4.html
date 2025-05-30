@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VR 기술의 한계와 해결책</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 867px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 867px;
+            position: relative;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+        }
+        .title-section {
+            padding: 1.5rem 3rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .content-section {
+            padding: 1.5rem 3rem;
+            display: flex;
+        }
+        .column {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 0.8rem;
+            font-size: 1.6rem;
+        }
+        .problem-card, .solution-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        .problem-card {
+            border-left-color: #ef4444;
+        }
+        .solution-card {
+            border-left-color: #10b981;
+        }
+        .problem-card:hover, .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.7rem;
+            width: 25px;
+            text-align: center;
+        }
+        .card-content {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        .motion-types {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+        }
+        .motion-type {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+        }
+        .motion-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .motion-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        .motion-name {
+            font-size: 0.9rem;
+            color: white;
+            text-align: center;
+        }
+        .fatigue-level {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .overlay-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2%, transparent 0%);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="overlay-pattern"></div>
+<div class="content-container">
+<div class="title-section">
+<h1 class="title">VR 기술의 한계와 해결책</h1>
+</div>
+<div class="content-section">
+<div class="column">
+<h2 class="section-title">
+<i class="fas fa-exclamation-triangle"></i>VR의 한계 및 문제점
+                    </h2>
+<div class="problem-card">
+<h3 class="card-title">
+<i class="fas fa-dizzy"></i>멀미 현상
+                        </h3>
+<p class="card-content">
+                            시각 정보와 귓속 전정기관의 감각 정보가 불일치할 때 발생. 시각적으로는 움직이는데 실제로는 정지해 있거나, 그 반대의 경우 뇌에서 정보 충돌이 일어나 멀미 발생
+                        </p>
+</div>
+<div class="problem-card">
+<h3 class="card-title">
+<i class="fas fa-eye-slash"></i>눈의 피로감
+                        </h3>
+<p class="card-content">
+                            실제 물체를 볼 때와 다른 눈 움직임과 가까운 화면에서 나오는 빛으로 인해 발생. 실제로 100m 거리의 물체를 보는 것과 10cm 거리의 화면을 통해 보는 것의 차이
+                        </p>
+</div>
+<h3 class="card-title" style="margin-top: 1.5rem;">
+<i class="fas fa-chart-line"></i>움직임에 따른 피로도 차이
+                    </h3>
+<div class="motion-types">
+<div class="motion-type">
+<div class="motion-icon">
+<i class="fas fa-sync-alt"></i>
+</div>
+<div class="motion-name">롤 모션</div>
+<div class="fatigue-level">피로도: 높음</div>
+</div>
+<div class="motion-type">
+<div class="motion-icon">
+<i class="fas fa-exchange-alt"></i>
+</div>
+<div class="motion-name">요 모션</div>
+<div class="fatigue-level">피로도: 낮음</div>
+</div>
+<div class="motion-type">
+<div class="motion-icon">
+<i class="fas fa-arrows-alt-v"></i>
+</div>
+<div class="motion-name">피치 모션</div>
+<div class="fatigue-level">피로도: 중간</div>
+</div>
+</div>
+</div>
+<div class="column">
+<h2 class="section-title">
+<i class="fas fa-lightbulb"></i>해결 방안 및 연구 동향
+                    </h2>
+<div class="solution-card">
+<h3 class="card-title">
+<i class="fas fa-calculator"></i>피로도 수치화 연구
+                        </h3>
+<p class="card-content">
+                            주관적 피로도를 객관적 수치로 변환하는 연구 진행 중. 다양한 콘텐츠에 대한 피로도 데이터 축적으로 예측 모델 개발, 콘텐츠 제작 과정에서 피로도 최소화 기법 적용
+                        </p>
+</div>
+<div class="solution-card">
+<h3 class="card-title">
+<i class="fas fa-low-vision"></i>시선 추적 기술
+                        </h3>
+<p class="card-content">
+                            사용자의 눈동자 움직임을 추적하여 관심 영역에 더 많은 렌더링 자원을 할당. 눈이 자연스럽게 관심을 갖는 부분을 더 자세하게 그려주고 눈동자 움직임을 최소화
+                        </p>
+</div>
+<div class="solution-card">
+<h3 class="card-title">
+<i class="fas fa-brain"></i>인공지능과 딥러닝 활용
+                        </h3>
+<p class="card-content">
+                            영상의 특성을 추출하고 인공지능과 딥러닝을 이용한 피로도 예측 모델 개발. 어떤 유형이나 정도의 피로 반응이 나타날지 사전에 예측하여 최적화된 콘텐츠 제작
+                        </p>
+</div>
+<div class="solution-card">
+<h3 class="card-title">
+<i class="fas fa-vr-cardboard"></i>하드웨어 개선
+                        </h3>
+<p class="card-content">
+                            고성능 GPU로 초당 프레임 수 향상, 자연스러운 움직임 구현. 양안 시차 최적화와 HMD 무게 감소, 착용감 개선으로 장시간 사용 피로도 감소 연구 진행 중
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>
