@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>건축공학의 다양한 전문분야</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+    body, html {width: 1280px; height: 839px; margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;}
+    .slide {
+      width: 1280px;
+      min-height: 839px;
+      position: relative;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+      
+    }
+    .header {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 1.5rem 3rem;
+      border-bottom: 5px solid #0c4a6e;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .content {
+      padding: 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 140px);
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #334155;
+      font-size: 1.1rem;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .fields-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      flex-grow: 1;
+    }
+    .field-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    .field-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+    .field-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e4ecf7;
+      padding-bottom: 0.8rem;
+    }
+    .field-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    .field-icon i {
+      font-size: 1.5rem;
+    }
+    .field-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    .field-content {
+      color: #334155;
+      font-size: 1rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+    .field-content ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+    .field-content li {
+      margin-bottom: 0.5rem;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .accent-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, #1e40af, #3b82f6);
+    }
+  </style>
+</head>
+<body>
+<div class="slide">
+<div class="header">
+<h1 class="title">건축공학의 다양한 전문분야</h1>
+</div>
+<div class="content">
+<p class="intro">건축공학은 단순히 설계나 시공만이 아닌 다양한 전문 분야로 구성되어 있으며, 각 분야는 건축물의 완성과 유지에 필수적인 역할을 담당</p>
+<div class="fields-container">
+<div class="field-card">
+<div class="accent-line"></div>
+<div class="field-header">
+<div class="field-icon">
+<i class="fas fa-hard-hat"></i>
+</div>
+<h2 class="field-title">시공 분야</h2>
+</div>
+<div class="field-content">
+<p>설계된 건물을 경제적으로 안전하게 짓는 분야</p>
+<ul>
+<li>건설 현장에서의 자재 및 인력 관리</li>
+<li>공사 일정 및 안전 관리</li>
+<li>로봇, 3D 프린팅 등 신기술 활용</li>
+<li>건물 생애주기 관리</li>
+</ul>
+</div>
+</div>
+<div class="field-card">
+<div class="accent-line"></div>
+<div class="field-header">
+<div class="field-icon">
+<i class="fas fa-columns"></i>
+</div>
+<h2 class="field-title">구조 분야</h2>
+</div>
+<div class="field-content">
+<p>건물이 안정적으로 자신을 지탱할 수 있도록 계획하는 분야</p>
+<ul>
+<li>건물의 구조적 안정성 계산 및 설계</li>
+<li>지진에 대비한 내진 설계</li>
+<li>고층 건물의 구조적 해결책 개발</li>
+<li>새로운 건축 재료 연구 및 적용</li>
+</ul>
+</div>
+</div>
+<div class="field-card">
+<div class="accent-line"></div>
+<div class="field-header">
+<div class="field-icon">
+<i class="fas fa-leaf"></i>
+</div>
+<h2 class="field-title">건축 환경 분야</h2>
+</div>
+<div class="field-content">
+<p>에너지 효율과 환경 공생을 추구하는 분야</p>
+<ul>
+<li>건물 에너지 효율화 및 자원 절약</li>
+<li>태양광, 지열 등 대체 에너지 활용</li>
+<li>실내 환경의 쾌적성 향상 기술</li>
+<li>스마트 건물 시스템 개발</li>
+</ul>
+</div>
+</div>
+<div class="field-card">
+<div class="accent-line"></div>
+<div class="field-header">
+<div class="field-icon">
+<i class="fas fa-pencil-ruler"></i>
+</div>
+<h2 class="field-title">설계 분야</h2>
+</div>
+<div class="field-content">
+<p>건물에 새로운 생각을 담아 구현하는 창의적 분야</p>
+<ul>
+<li>건축의 기능적, 미학적 요소 통합</li>
+<li>다양한 전문가들과의 협업 주도</li>
+<li>창의적 문제 해결과 새로운 공간 창출</li>
+<li>기존 관념에 대한 질문과 혁신적 대안 제시</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>4장: 다시 생각하고 또 다른 질문을 던지다</div>
+<div>9 / 12</div>
+</div>
+</div>
+
+</body></html>

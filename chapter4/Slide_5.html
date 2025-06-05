@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>계산복잡도와 암호화 기술</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+    body, html {width: 1280px; height: 800px; margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;}
+    .slide {
+      width: 1280px;
+      min-height: 800px;
+      position: relative;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+      
+    }
+    .header {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 1.5rem 3rem;
+      border-bottom: 5px solid #0c4a6e;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .content {
+      padding: 1.5rem 3rem;
+      display: flex;
+      height: calc(100% - 107px); /* Adjusting for header and footer */
+    }
+    .section {
+      flex: 1;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .section-left {
+      margin-right: 1rem;
+    }
+    .section-right {
+      margin-left: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      height: 100%;
+      position: relative;
+      
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .section-title i {
+      margin-right: 0.8rem;
+      font-size: 1.4rem;
+      color: #3b82f6;
+    }
+    .content-text {
+      font-size: 1.1rem;
+      color: #334155;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .highlight-box {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid #3b82f6;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .key-point {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+    .key-point i {
+      color: #3b82f6;
+      margin-right: 0.6rem;
+      font-size: 1rem;
+    }
+    .complexity-container {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .complexity-item {
+      text-align: center;
+      padding: 1rem;
+      width: 47%;
+      border-radius: 8px;
+    }
+    .complexity-p {
+      background-color: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .complexity-np {
+      background-color: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .complexity-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .complexity-p .complexity-title {
+      color: #1e40af;
+    }
+    .complexity-np .complexity-title {
+      color: #be123c;
+    }
+    .complexity-desc {
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    .vs {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #64748b;
+    }
+    .rsa-flow {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .rsa-step {
+      width: 30%;
+      text-align: center;
+      padding: 1rem 0.5rem;
+      border-radius: 8px;
+      background-color: white;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      z-index: 2;
+    }
+    .rsa-step i {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #3b82f6;
+    }
+    .rsa-step-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .rsa-arrow {
+      z-index: 1;
+      color: #94a3b8;
+    }
+    .award {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #64748b;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="slide">
+<div class="header">
+<h1 class="title">계산복잡도와 암호화 기술</h1>
+</div>
+<div class="content">
+<div class="section section-left">
+<div class="card">
+<h2 class="section-title"><i class="fas fa-puzzle-piece"></i>P vs NP 문제</h2>
+<p class="content-text">
+            계산복잡도는 컴퓨터로 문제를 해결할 때 필요한 시간과 공간(메모리)을 연구하는 분야로, 최적 알고리즘을 찾고 문제의 복잡도에 따라 분류
+          </p>
+<div class="complexity-container">
+<div class="complexity-item complexity-p">
+<div class="complexity-title">P (Polynomial)</div>
+<div class="complexity-desc">적절한 시간 내에 해결 가능한 문제들의 집합</div>
+<div class="key-point"><i class="fas fa-check-circle"></i>양수곱셈 문제</div>
+</div>
+<div class="vs">VS</div>
+<div class="complexity-item complexity-np">
+<div class="complexity-title">NP (Non-deterministic Polynomial)</div>
+<div class="complexity-desc">적절한 시간 내에 확인 가능한 문제들의 집합</div>
+<div class="key-point"><i class="fas fa-check-circle"></i>부분집합합 문제</div>
+</div>
+</div>
+<div class="highlight-box">
+<div class="key-point"><i class="fas fa-lightbulb"></i>P=NP인지 혹은 P≠NP인지 여부는 아직 미해결 문제</div>
+<div class="key-point"><i class="fas fa-award"></i>클레이 수학연구소 7대 밀레니엄 문제 중 하나 (상금 100만 달러)</div>
+</div>
+</div>
+</div>
+<div class="section section-right">
+<div class="card">
+<h2 class="section-title"><i class="fas fa-lock"></i>RSA 암호화 기술</h2>
+<p class="content-text">
+            RSA 암호화는 계산복잡도 이론을 실생활에 응용한 대표적 사례로, 두 소수의 곱은 계산하기 쉽지만 그 결과값에서 원래 소수를 찾기는 매우 어렵다는 원리를 활용
+          </p>
+<div class="rsa-flow">
+<div class="rsa-step">
+<i class="fas fa-key"></i>
+<div class="rsa-step-title">키 생성</div>
+<div class="complexity-desc">두 소수를 선택하여 암호화 키 생성</div>
+</div>
+<div class="rsa-arrow">
+<i class="fas fa-arrow-right fa-lg"></i>
+</div>
+<div class="rsa-step">
+<i class="fas fa-lock"></i>
+<div class="rsa-step-title">암호화</div>
+<div class="complexity-desc">공개키로 메시지 암호화</div>
+</div>
+<div class="rsa-arrow">
+<i class="fas fa-arrow-right fa-lg"></i>
+</div>
+<div class="rsa-step">
+<i class="fas fa-unlock"></i>
+<div class="rsa-step-title">복호화</div>
+<div class="complexity-desc">개인키로만 해독 가능</div>
+</div>
+</div>
+<div class="highlight-box">
+<div class="key-point"><i class="fas fa-shield-alt"></i>현재 RSA 암호화에는 2048비트 이상 키 사용 (2²⁰⁴⁸개 숫자 표현 가능)</div>
+<div class="key-point"><i class="fas fa-user-shield"></i>전자상거래, 메신저 대화 등 온라인 보안의 핵심 기술</div>
+</div>
+<div class="award">
+<i class="fas fa-trophy"></i> RSA 발명자들(Rivest, Shamir, Adleman)은 2002년 튜링상 수상
+          </div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>4장: 다시 생각하고 또 다른 질문을 던지다</div>
+<div>5 / 12</div>
+</div>
+</div>
+
+</body></html>

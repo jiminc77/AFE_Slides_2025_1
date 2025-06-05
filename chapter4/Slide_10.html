@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>건축 설계와 창의적 사고</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+    body, html {width: 1280px; height: 740px; margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;}
+    .slide {
+      width: 1280px;
+      min-height: 740px;
+      position: relative;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+      
+    }
+    .header {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 1.5rem 3rem;
+      border-bottom: 5px solid #0c4a6e;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .content {
+      padding: 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 100px);
+    }
+    .concept-flow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .concept-box {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      width: 30%;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .concept-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+    .concept-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+    }
+    .concept-icon i {
+      font-size: 2rem;
+    }
+    .concept-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+    .concept-desc {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      color: #3b82f6;
+      font-size: 2rem;
+    }
+    .insights {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      flex-grow: 1;
+    }
+    .insights-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .insights-title i {
+      margin-right: 0.8rem;
+      color: #3b82f6;
+    }
+    .insight-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+    .insight-item i {
+      color: #3b82f6;
+      margin-right: 0.8rem;
+      margin-top: 0.3rem;
+    }
+    .insight-text {
+      font-size: 1.1rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+    .quote {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid #3b82f6;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 0 10px 10px 0;
+    }
+    .quote-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #1e3a8a;
+      line-height: 1.5;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<div class="slide">
+<div class="header">
+<h1 class="title">건축 설계와 창의적 사고</h1>
+</div>
+<div class="content">
+<div class="concept-flow">
+<div class="concept-box">
+<div class="concept-icon">
+<i class="fas fa-lightbulb"></i>
+</div>
+<div class="concept-title">호기심</div>
+<div class="concept-desc">
+            기존의 공간과 형태에 대한 의문을 품고 새로운 관점으로 세상을 바라보는 태도
+          </div>
+</div>
+<div class="flow-arrow">
+<i class="fas fa-long-arrow-alt-right"></i>
+</div>
+<div class="concept-box">
+<div class="concept-icon">
+<i class="fas fa-question-circle"></i>
+</div>
+<div class="concept-title">질문</div>
+<div class="concept-desc">
+            당연하게 여겨지는 공간 구성과 형태에 대한 근본적인 의문 제기와 탐구
+          </div>
+</div>
+<div class="flow-arrow">
+<i class="fas fa-long-arrow-alt-right"></i>
+</div>
+<div class="concept-box">
+<div class="concept-icon">
+<i class="fas fa-drafting-compass"></i>
+</div>
+<div class="concept-title">창조</div>
+<div class="concept-desc">
+            새로운 생각을 물리적 형태로 구현하여 인간의 삶을 담아내는 공간 창출
+          </div>
+</div>
+</div>
+<div class="insights">
+<div class="insights-title">
+<i class="fas fa-brain"></i>
+          건축 설계의 본질적 사고
+        </div>
+<div class="insight-item">
+<i class="fas fa-check-circle"></i>
+<div class="insight-text">
+            건축은 단순히 건물을 짓는 행위가 아닌 인간의 생각을 콘크리트로 구현해내는 과정
+          </div>
+</div>
+<div class="insight-item">
+<i class="fas fa-check-circle"></i>
+<div class="insight-text">
+            방이 직사각형인 이유, 학교 교실의 형태, 도서관의 공간 구성 등 기존 공간 관습에 대한 질문이 혁신을 이끌어냄
+          </div>
+</div>
+<div class="insight-item">
+<i class="fas fa-check-circle"></i>
+<div class="insight-text">
+            건축가에게 재능보다 중요한 것은 끈기와 사회성, 그리고 무엇보다 호기심
+          </div>
+</div>
+<div class="insight-item">
+<i class="fas fa-check-circle"></i>
+<div class="insight-text">
+            새로운 시대에 맞는 새로운 질문들이 건축을 통해 다른 분야와 융합하여 우리의 삶을 변화시킴
+          </div>
+</div>
+<div class="quote">
+<div class="quote-text">
+            &#34;우리가 보는 것은 사실 생각이다. 우리는 건물이 단단하다 보니 &#39;만드는 것&#39;에 더 관심을 가지게 되지만 그 바탕에는 &#39;생각&#39;이란 것이 있다.&#34;
+          </div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>4장: 다시 생각하고 또 다른 질문을 던지다</div>
+<div>10 / 12</div>
+</div>
+</div>
+
+</body></html>

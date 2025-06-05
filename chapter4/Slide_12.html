@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>기술융합과 산업생태계</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+    body, html {width: 1280px; height: 765px; margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;}
+    .slide {
+      width: 1280px;
+      min-height: 765px;
+      position: relative;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+      
+    }
+    .header {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 1.5rem 3rem;
+      border-bottom: 5px solid #0c4a6e;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .content {
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 100px - 50px); /* Subtract header and footer heights */
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      flex-grow: 1;
+    }
+    .main-section {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .section-title i {
+      margin-right: 0.8rem;
+      font-size: 1.4rem;
+      color: #3b82f6;
+    }
+    .section-content {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+    .highlight {
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+    .tech-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1.5rem 0;
+    }
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 23%;
+    }
+    .tech-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+      color: #1e40af;
+      font-size: 1.5rem;
+    }
+    .tech-name {
+      font-weight: 500;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+    .flow-arrow {
+      color: #3b82f6;
+      font-size: 1.5rem;
+    }
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.7rem;
+      line-height: 1.4;
+    }
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 8px;
+      height: 8px;
+      background-color: #3b82f6;
+      border-radius: 50%;
+    }
+    .bottom-section {
+      background: linear-gradient(90deg, #1e3a8a10, #3b82f610);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-left: 5px solid #3b82f6;
+    }
+    .conclusion-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.8rem;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<div class="slide">
+<div class="header">
+<h1 class="title">기술융합과 산업생태계</h1>
+</div>
+<div class="content">
+<div class="main-grid">
+<div class="main-section">
+<div class="section-title">
+<i class="fas fa-code-branch"></i>
+            기존 기술의 융합을 통한 신기술 발전
+          </div>
+<div class="section-content">
+<p>신기술은 기존 기술의 단순한 확장이 아닌 <span class="highlight">다양한 기술의 융합과 복합화</span>를 통해 탄생</p>
+<div class="tech-flow">
+<div class="tech-item">
+<div class="tech-icon">
+<i class="fas fa-keyboard"></i>
+</div>
+<div class="tech-name">타자기 기술</div>
+</div>
+<div class="flow-arrow">
+<i class="fas fa-arrow-right"></i>
+</div>
+<div class="tech-item">
+<div class="tech-icon">
+<i class="fas fa-desktop"></i>
+</div>
+<div class="tech-name">개인용 컴퓨터</div>
+</div>
+<div class="flow-arrow">
+<i class="fas fa-arrow-right"></i>
+</div>
+<div class="tech-item">
+<div class="tech-icon">
+<i class="fas fa-mobile-alt"></i>
+</div>
+<div class="tech-name">스마트폰</div>
+</div>
+</div>
+<ul class="bullet-list">
+<li>타자기는 피아노 건반, 전신기 부호 발생장치, 재봉기 페달, 시계태엽 등 기존 기술의 복합체</li>
+<li>IBM PC는 표준화된 구조와 공개된 운영체제로 산업 생태계 형성</li>
+<li>스마트폰은 전화, 카메라, 컴퓨터 등 다양한 기술의 통합</li>
+</ul>
+</div>
+</div>
+<div class="main-section">
+<div class="section-title">
+<i class="fas fa-network-wired"></i>
+            연결성과 지능화 기반의 미래 산업
+          </div>
+<div class="section-content">
+<p>정보기술과 인터넷이 가져다 준 <span class="highlight">연결성</span>은 미래 산업의 핵심 환경</p>
+<ul class="bullet-list">
+<li>인터넷을 통해 형성된 연결 비즈니스 환경은 복잡성이 크게 증가</li>
+<li>연결고리가 길고 상황 변화가 빠른 현대 산업에서 <span class="highlight">지능적 의사결정</span> 필요</li>
+<li>스마트 팩토리: 제조과정의 지능적 자동화와 유연 제조 실현</li>
+<li>제조업과 서비스업의 경계가 모호해지며 통합적 산업 생태계 형성</li>
+</ul>
+<p class="mt-4">미래 산업의 방향성:</p>
+<ul class="bullet-list">
+<li>산업의 &#39;지능화&#39; - 복잡성 증가에 따른 효율적 관리 필요</li>
+<li>스마트 헬스, 스마트 시티 등 다양한 지능화 산업의 성장</li>
+<li>모델링과 의사결정 메커니즘 중심의 인공지능 활용</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="bottom-section">
+<div class="conclusion-title">산업 생태계의 이해와 연결</div>
+<div class="section-content">
+          &#34;산업은 단순히 개발된 신기술이 성공적으로 자리매김을 하는 것이 아니며 산업 생태계의 특성에 따라 변화하는 과정을 겪는다. 앞으로의 세대는 기존 수많은 기술의 연결고리에서, 그리고 이를 통합적으로 연결해 주는 의사결정 메커니즘을 장착하는 과정에서 산업군의 성공을 손에 쥘 수 있을 것이다.&#34;
+        </div>
+</div>
+</div>
+<div class="footer">
+<div>4장: 다시 생각하고 또 다른 질문을 던지다</div>
+<div>12 / 12</div>
+</div>
+</div>
+
+</body></html>
