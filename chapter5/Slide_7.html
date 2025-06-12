@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>걷는 사람들의 공간: 보행 중심 도시의 가치</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 762px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 762px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .content-section {
+            display: flex;
+            padding: 1.5rem;
+        }
+        .left-column {
+            flex: 1;
+            padding-right: 1rem;
+        }
+        .right-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding-left: 1rem;
+        }
+        .intro-text {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .intro-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .intro-title i {
+            margin-right: 0.8rem;
+            color: #3b82f6;
+        }
+        .intro-content {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        .benefit-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .benefit-card {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 0 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .benefit-card:first-child {
+            margin-left: 0;
+        }
+        .benefit-card:last-child {
+            margin-right: 0;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+        }
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .benefit-desc {
+            font-size: 0.85rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        .image-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .image-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .image-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            border-radius: 8px;
+        }
+        .street-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .caption {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        .page-number {
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="title-section">
+<h1 class="title">걷는 사람들의 공간: 보행 중심 도시의 가치</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="intro-text">
+<h3 class="intro-title">
+<i class="fas fa-exchange-alt"></i>
+                        자동차에서 사람 중심으로의 패러다임 전환
+                    </h3>
+<p class="intro-content">
+                        현대 도시는 20세기 초반 자동차의 대량 보급으로 자동차 중심의 공간으로 변화했으나, 21세기 들어 다시 보행자 중심 공간으로 회귀하는 추세
+                    </p>
+<p class="intro-content">
+                        뉴욕 맨해튼 타임스퀘어는 대표적인 사례로, 자동차 중심에서 보행자 위주의 공간으로 성공적으로 탈바꿈
+                    </p>
+</div>
+<div class="intro-text">
+<h3 class="intro-title">
+<i class="fas fa-walking"></i>
+                        걷기의 미학과 도시 경험
+                    </h3>
+<p class="intro-content">
+                        걷기는 도시를 가장 잘 이해할 수 있는 수단이며, 자동차로는 경험할 수 없는 도시의 세세한 모습과 향기를 느끼게 함
+                    </p>
+<p class="intro-content">
+                        사람들이 걸으며 머물고, 구경하고, 소통하는 공간은 도시 활력의 원천이 되며 지역 공동체 의식 강화에 기여
+                    </p>
+</div>
+<div class="benefit-cards">
+<div class="benefit-card">
+<div class="benefit-icon">
+<i class="fas fa-heart"></i>
+</div>
+<h4 class="benefit-title">건강적 가치</h4>
+<p class="benefit-desc">
+                            일상에서 30분 이상 지속적인 걷기는 운동 효과를 제공하며 건강 증진에 효과적. 현대인의 신체활동 부족 문제 해결에 기여.
+                        </p>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon">
+<i class="fas fa-users"></i>
+</div>
+<h4 class="benefit-title">사회적 가치</h4>
+<p class="benefit-desc">
+                            보행 중심 공간은 다양한 세대의 만남과 교류를 촉진하며, 문화 행사와 축제의 장으로 활용되어 지역 공동체 의식 강화.
+                        </p>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon">
+<i class="fas fa-store"></i>
+</div>
+<h4 class="benefit-title">경제적 가치</h4>
+<p class="benefit-desc">
+                            보행자의 &#39;8초의 법칙&#39;에 맞춘 상점 디자인과 매력적인 가로 환경은 소비 활동을 촉진하고 상권 활성화에 기여.
+                        </p>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="image-container">
+<h3 class="image-title">세계의 걷고 싶은 거리들</h3>
+<div class="image-wrapper">
+<img alt="덴마크 코펜하겐의 스트뢰에 거리" class="street-image" src="https://picture-search.skywork.ai/aippt/image/sheet/9dd278d74d31ba9c82b4afb48df2c7e4_crop.jpg"/>
+</div>
+<p class="caption">덴마크 코펜하겐, 스트뢰에 거리 - 유럽에서 가장 긴 보행자 쇼핑 거리 중 하나</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<div></div>
+<div class="page-number">7 / 13</div>
+</div>
+</div>
+
+</body></html>

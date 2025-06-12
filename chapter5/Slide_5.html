@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>화학공정의 예술: 인류 발전의 원동력</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 875px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 875px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .content-container {
+            display: flex;
+            padding: 2rem;
+            height: calc(100% - 120px);
+        }
+        .left-column {
+            flex: 1;
+            padding-right: 1.5rem;
+        }
+        .right-column {
+            flex: 1;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 0.8rem;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-content {
+            color: #4b5563;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .highlight {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        .data-point {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .data-point i {
+            color: #3b82f6;
+            margin-right: 0.5rem;
+        }
+        .data-label {
+            font-weight: 600;
+            margin-right: 0.5rem;
+            color: #1e3a8a;
+        }
+        .chart-container {
+            height: 220px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        .page-number {
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="title-section">
+<h1 class="title">화학공정의 예술: 인류 발전의 원동력</h1>
+</div>
+<div class="content-container">
+<div class="left-column">
+<div class="info-card">
+<h3 class="card-title">
+<i class="fas fa-flask"></i>
+                        하버-보슈 공정의 발명
+                    </h3>
+<div class="card-content">
+<p>19세기 말, 세계 인구 <span class="highlight">15억 명</span>으로 증가하며 식량부족 문제가 대두됨</p>
+<p class="mt-2">프리츠 하버(Fritz Haber)의 연구로 <span class="highlight">550도, 175기압</span> 조건에서 오스뮴 촉매를 사용해 암모니아 합성법 개발 (1918년 노벨화학상 수상)</p>
+<p class="mt-2">카를 보슈(Carl Bosch)는 산화철 촉매로 대체하여 하루 <span class="highlight">20톤 규모</span>의 암모니아 대량 생산에 성공</p>
+</div>
+</div>
+<div class="info-card">
+<h3 class="card-title">
+<i class="fas fa-seedling"></i>
+                        인류 식량 문제 해결의 열쇠
+                    </h3>
+<div class="card-content">
+<p>농작물 성장에 필요한 질소, 인, 칼륨 중 <span class="highlight">질소</span>의 공급이 가장 큰 문제였음</p>
+<p class="mt-2">공기 중 <span class="highlight">78%</span>를 차지하는 질소를 고정하여 비료로 활용하는 혁신적 방법</p>
+<p class="mt-2">하버-보슈 공정을 통한 암모니아 비료 생산으로 <span class="highlight">농업 생산성 획기적 향상</span></p>
+<p class="mt-2">현재까지도 암모니아를 합성하는 가장 <span class="highlight">저렴하고 효율적인 방법</span>으로 사용 중</p>
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="info-card">
+<h3 class="card-title">
+<i class="fas fa-chart-line"></i>
+                        인구 폭발적 증가의 원동력
+                    </h3>
+<div class="card-content">
+<p>하버-보슈 공정(1908)의 발명은 증기기관(1769)과 함께 인류 역사상 가장 큰 인구 증가를 가능하게 한 기술혁신</p>
+<div class="chart-container" id="populationChart"></div>
+<p class="mt-2 text-sm text-gray-500 text-center">세계 인구 변화: 하버-보슈법(1908) 이후 급격한 인구 증가</p>
+</div>
+</div>
+<div class="info-card">
+<h3 class="card-title">
+<i class="fas fa-industry"></i>
+                        화학공정의 현대적 의의
+                    </h3>
+<div class="card-content">
+<div class="data-point">
+<i class="fas fa-check-circle"></i>
+<span class="data-label">발전:</span>
+<span>인류가 식량부족 문제에서 자유로워질 수 있게 함</span>
+</div>
+<div class="data-point">
+<i class="fas fa-check-circle"></i>
+<span class="data-label">영향력:</span>
+<span>석유화학제품이 의식주 모든 영역에 활용되는 현대 생활의 기반</span>
+</div>
+<div class="data-point">
+<i class="fas fa-check-circle"></i>
+<span class="data-label">혁신성:</span>
+<span>과학적 발견이 산업 규모로 확장된 화학공학의 대표적 사례</span>
+</div>
+<div class="data-point">
+<i class="fas fa-check-circle"></i>
+<span class="data-label">지속성:</span>
+<span>100년 이상 지속되는 공정으로 인류 문명의 근간 유지</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>화학공정의 예술, 화학의 축복을 더 많은 사람들에게 _ 문일, 이광희</div>
+<div class="page-number">5 / 13</div>
+</div>
+</div>
+<script>
+        // 세계 인구 변화 그래프 (간략화된 데이터)
+        const populationData = [
+            {year: 1700, population: 0.6},
+            {year: 1769, population: 0.8}, // 증기기관 발명
+            {year: 1850, population: 1.2},
+            {year: 1900, population: 1.5},
+            {year: 1908, population: 1.7}, // 하버-보슈법
+            {year: 1950, population: 2.5},
+            {year: 2000, population: 6.1}
+        ];
+        
+        // 차트 생성
+        const margin = {top: 20, right: 30, bottom: 40, left: 50};
+        const width = document.querySelector('.chart-container').offsetWidth - margin.left - margin.right;
+        const height = document.querySelector('.chart-container').offsetHeight - margin.top - margin.bottom;
+        
+        const svg = d3.select("#populationChart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+        
+        // X축 스케일
+        const x = d3.scaleLinear()
+            .domain([1700, 2000])
+            .range([0, width]);
+        
+        // Y축 스케일
+        const y = d3.scaleLinear()
+            .domain([0, 7])
+            .range([height, 0]);
+        
+        // X축 그리기
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x).tickFormat(d => d))
+            .selectAll("text")
+            .style("font-size", "10px");
+        
+        // Y축 그리기
+        svg.append("g")
+            .call(d3.axisLeft(y))
+            .selectAll("text")
+            .style("font-size", "10px");
+        
+        // Y축 레이블
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .style("font-size", "10px")
+            .style("fill", "#4b5563")
+            .text("세계 인구 (십억 명)");
+        
+        // 선 그리기
+        const line = d3.line()
+            .x(d => x(d.year))
+            .y(d => y(d.population));
+        
+        svg.append("path")
+            .datum(populationData)
+            .attr("fill", "none")
+            .attr("stroke", "#3b82f6")
+            .attr("stroke-width", 2.5)
+            .attr("d", line);
+        
+        // 중요 포인트 표시
+        svg.selectAll(".dot")
+            .data(populationData)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("cx", d => x(d.year))
+            .attr("cy", d => y(d.population))
+            .attr("r", 4)
+            .attr("fill", "#1e40af");
+        
+        // 중요 이벤트 표시
+        const events = [
+            {year: 1769, text: "증기기관 발명", population: 0.8},
+            {year: 1908, text: "하버-보슈법", population: 1.7}
+        ];
+        
+        svg.selectAll(".event")
+            .data(events)
+            .enter().append("circle")
+            .attr("class", "event")
+            .attr("cx", d => x(d.year))
+            .attr("cy", d => y(d.population))
+            .attr("r", 6)
+            .attr("fill", "#ef4444");
+        
+        svg.selectAll(".event-label")
+            .data(events)
+            .enter().append("text")
+            .attr("class", "event-label")
+            .attr("x", d => x(d.year))
+            .attr("y", d => y(d.population) - 10)
+            .attr("text-anchor", "middle")
+            .style("font-size", "9px")
+            .style("fill", "#1e3a8a")
+            .style("font-weight", "bold")
+            .text(d => d.text);
+    </script>
+
+</body></html>

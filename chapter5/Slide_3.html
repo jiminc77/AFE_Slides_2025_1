@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>철의 진화: 우주에서 온 선물</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 720px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .content-section {
+            display: flex;
+            padding: 1.5rem 2rem;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 1.5rem;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            color: white;
+            font-size: 1rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .card-content {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        .quote-card {
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            border-left: 4px solid #3b82f6;
+            padding: 1.2rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+        .quote-text {
+            font-size: 0.95rem;
+            color: #1e3a8a;
+            line-height: 1.5;
+        }
+        .quote-author {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            text-align: right;
+        }
+        .key-points {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .key-point {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+        .point-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .point-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+        .point-desc {
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        .star-evolution {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .evolution-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .evolution-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .evolution-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .step-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e3a8a;
+            text-align: center;
+        }
+        .evolution-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            width: 80%;
+            top: 20px;
+            left: 10%;
+            z-index: 1;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        .page-number {
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="title-section">
+<h1 class="title">철의 진화: 우주에서 온 선물</h1>
+</div>
+<div class="content-section">
+<div class="left-content">
+<div class="section-title">
+<div class="section-icon"><i class="fas fa-star"></i></div>
+<span>우주에서 온 금속</span>
+</div>
+<div class="info-card">
+<h3 class="card-title">철의 우주적 기원</h3>
+<p class="card-content">
+                        철은 92종의 원소 중 우주에서 가장 풍부한 금속원소로, 지구의 38%를 차지함</p>
+<p class="card-content">
+                        약 137억 년 전 빅뱅 이후 별 내부의 핵융합 반응을 통해 만들어졌으며, 초신성 폭발을 통해 
+                        우주 전체로 확산됨
+                    </p>
+</div>
+<div class="star-evolution">
+<h4 class="evolution-title">별의 진화 과정에서 철의 생성</h4>
+<div class="evolution-steps">
+<div class="evolution-line"></div>
+<div class="evolution-step">
+<div class="step-icon"><i class="fas fa-sun"></i></div>
+<div class="step-name">적색거성<br/>(Red Giant)</div>
+</div>
+<div class="evolution-step">
+<div class="step-icon"><i class="fas fa-arrow-right"></i></div>
+<div class="step-name">질량 유입<br/>핵융합</div>
+</div>
+<div class="evolution-step">
+<div class="step-icon"><i class="far fa-sun"></i></div>
+<div class="step-name">백색왜성<br/>(White Dwarf)</div>
+</div>
+<div class="evolution-step">
+<div class="step-icon"><i class="fas fa-balance-scale"></i></div>
+<div class="step-name">찬드라세카르<br/>한계</div>
+</div>
+<div class="evolution-step">
+<div class="step-icon"><i class="fas fa-meteor"></i></div>
+<div class="step-name">초신성<br/>(Supernova)</div>
+</div>
+</div>
+</div>
+<div class="quote-card">
+<p class="quote-text">
+                        &#34;원소는 별들의 생애 과정의 산물이며, 철은 별의 자연적 생애에서 마지막 종착역&#34;
+                    </p>
+<p class="quote-author">- 샘 킨(Sam Kean), 미국 과학 저술가</p>
+</div>
+</div>
+<div class="right-content">
+<div class="section-title">
+<div class="section-icon"><i class="fas fa-globe-americas"></i></div>
+<span>인류 문명의 기반</span>
+</div>
+<div class="info-card">
+<h3 class="card-title">지구 생태계의 수호자</h3>
+<p class="card-content">
+                        철은 지구 중심부의 핵을 형성하여 자전과 공전에 의한 자기장을 만들어내 태양과 우주로부터 오는 
+                        유해한 우주 방사선으로부터 지구 생태계를 보호
+                    </p>
+<p class="card-content">
+                        또한 철은 무거운 핵이 되어 회전하면서 
+                        발생하는 맨틀과의 마찰력으로 대륙이동과 해양 대류, 화산 활동 같은 역동적인 지구 생태계를 
+                        만들어냄
+                    </p>
+</div>
+<div class="info-card">
+<h3 class="card-title">생명의 필수 요소</h3>
+<p class="card-content">
+                        인체 내에는 4~5그램의 철이 혈액 속에 존재하며, 이로 인해 산소를 호흡할 수 있음
+                    </p>
+<p class="card-content">
+                        철은 &#39;생명, 그 자체&#39;라 할 수 있으며, 강함의 상징으로 인류 곁에 항상 함께해 옴
+                    </p>
+</div>
+<div class="key-points">
+<div class="key-point">
+<div class="point-icon"><i class="fas fa-percentage"></i></div>
+<h4 class="point-title">지구의 38%</h4>
+<p class="point-desc">지구에서 가장 풍부한 금속원소</p>
+</div>
+<div class="key-point">
+<div class="point-icon"><i class="fas fa-atom"></i></div>
+<h4 class="point-title">원자번호 26번</h4>
+<p class="point-desc">가장 안정적인 핵력 구조</p>
+</div>
+<div class="key-point">
+<div class="point-icon"><i class="fas fa-heartbeat"></i></div>
+<h4 class="point-title">생명의 근원</h4>
+<p class="point-desc">산소 호흡을 가능하게 함</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div></div>
+<div class="page-number">3 / 13</div>
+</div>
+</div>
+
+</body></html>

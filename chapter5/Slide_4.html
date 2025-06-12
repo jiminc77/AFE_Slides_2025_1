@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>철의 무한한 가능성과 미래</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 898px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 898px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .content-section {
+            display: flex;
+            padding: 1.5rem 2rem;
+        }
+        .left-column {
+            flex: 1;
+            padding-right: 1.5rem;
+        }
+        .right-column {
+            flex: 1;
+            padding-left: 1.5rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1rem;
+        }
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .feature-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(219, 234, 254, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .feature-text {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        .feature-highlight {
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        .strength-chart {
+            height: 200px;
+            margin-top: 1rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        .page-number {
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="title-section">
+<h1 class="title">철의 무한한 가능성과 미래</h1>
+</div>
+<div class="content-section">
+<div class="left-column">
+<div class="info-card">
+<div class="card-title">
+<div class="card-icon">
+<i class="fas fa-compress-alt"></i>
+</div>
+                        고온 수축: 철의 진정한 비밀
+                    </div>
+<ul class="feature-list">
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-temperature-high"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">982도</span> 근처에서 원자들이 조밀하게 오그라드는 고온 수축 현상 발생
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-atom"></i>
+</div>
+<div class="feature-text">
+                                탄소와의 합금과 온도 조절만으로 철의 원자배열을 자유자재로 변경 가능
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-cogs"></i>
+</div>
+<div class="feature-text">
+                                강한 철, 부드러운 철, 녹슬지 않는 철, 다양한 색상의 철, 항균성 철 등 특성 구현
+                            </div>
+</li>
+</ul>
+</div>
+<div class="info-card">
+<div class="card-title">
+<div class="card-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+                        철강의 잠재력과 미래
+                    </div>
+<ul class="feature-list">
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-tachometer-alt"></i>
+</div>
+<div class="feature-text">
+                                현재 구현 강도는 <span class="feature-highlight">1,000메가파스칼</span> 수준으로 이론 강도 <span class="feature-highlight">1,800메가파스칼</span>의 약 60% 수준
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-recycle"></i>
+</div>
+<div class="feature-text">
+                                철강은 <span class="feature-highlight">90% 이상</span>의 높은 자원 순환성을 바탕으로 지속가능한 미래 소재로 활용
+                            </div>
+</li>
+</ul>
+<div class="strength-chart" id="strength-chart"></div>
+</div>
+</div>
+<div class="right-column">
+<div class="info-card">
+<div class="card-title">
+<div class="card-icon">
+<i class="fas fa-flask"></i>
+</div>
+                        최신 철강 기술의 혁신
+                    </div>
+<ul class="feature-list">
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-snowflake"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">TWIP 강화기구</span>: -180도 영역에서도 <span class="feature-highlight">1,200메가파스칼</span>의 강도와 <span class="feature-highlight">70%</span>의 연신율 구현
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-expand-arrows-alt"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">초소성강</span>: 최대 <span class="feature-highlight">1,400%</span>까지 늘어나는 특성 보유
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-magnet"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">비자성강</span>: 자성을 띠지 않는 특수 철강 소재 개발
+                            </div>
+</li>
+</ul>
+</div>
+<div class="info-card">
+<div class="card-title">
+<div class="card-icon">
+<i class="fas fa-leaf"></i>
+</div>
+                        친환경 철강 소재의 발전
+                    </div>
+<ul class="feature-list">
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">내후성강</span>: 표면에 치밀한 산화철을 생성시켜 페인트 없이 <span class="feature-highlight">100년</span>을 견디는 기능
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-medkit"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">항균성강</span>: 표면의 박테리아를 죽이는 특수 철강 소재
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-soap"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">철 비누(Steel Soap)</span>: 비누를 대체할 수 있는 혁신적 철 응용 제품
+                            </div>
+</li>
+<li class="feature-item">
+<div class="feature-icon">
+<i class="fas fa-ship"></i>
+</div>
+<div class="feature-text">
+<span class="feature-highlight">초경량 천연가스 운반선</span>: 이산화탄소 배출을 최소화한 친환경 선박 개발
+                            </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>철의 진화, 아직도 끝나지 않았다</div>
+<div class="page-number">4 / 13</div>
+</div>
+</div>
+<script>
+        // 간단한 철강 강도 비교 차트 (현재 vs. 이론적 최대값)
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = [
+                { name: "현재 구현 강도", value: 1000, color: "#3b82f6" },
+                { name: "이론적 최대 강도", value: 1800, color: "#93c5fd" }
+            ];
+            
+            const width = document.getElementById('strength-chart').clientWidth;
+            const height = 200;
+            const margin = { top: 20, right: 20, bottom: 30, left: 60 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            const svg = d3.select("#strength-chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+                
+            const x = d3.scaleBand()
+                .domain(data.map(d => d.name))
+                .range([0, chartWidth])
+                .padding(0.3);
+                
+            const y = d3.scaleLinear()
+                .domain([0, 2000])
+                .range([chartHeight, 0]);
+                
+            svg.append("g")
+                .attr("transform", `translate(0,${chartHeight})`)
+                .call(d3.axisBottom(x));
+                
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + " MPa"));
+                
+            svg.selectAll("bars")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", d => x(d.name))
+                .attr("y", d => y(d.value))
+                .attr("width", x.bandwidth())
+                .attr("height", d => chartHeight - y(d.value))
+                .attr("fill", d => d.color)
+                .attr("rx", 6)
+                .attr("ry", 6);
+                
+            svg.selectAll("text.value")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", "value")
+                .attr("x", d => x(d.name) + x.bandwidth()/2)
+                .attr("y", d => y(d.value) - 5)
+                .attr("text-anchor", "middle")
+                .attr("fill", "#1e3a8a")
+                .attr("font-size", "12px")
+                .attr("font-weight", "bold")
+                .text(d => d.value + " MPa");
+        });
+    </script>
+
+</body></html>

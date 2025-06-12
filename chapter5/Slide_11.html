@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>4차 산업혁명의 본질과 도전 과제</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 720px; margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+            
+        }
+        .title-section {
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 5px solid #0c4a6e;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .content-section {
+            display: flex;
+            padding: 1.5rem;
+            height: calc(100% - 120px);
+        }
+        .column {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e4ecf7;
+        }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #e4ecf7;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .timeline-item {
+            position: relative;
+            z-index: 2;
+            width: 80px;
+            text-align: center;
+        }
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            margin: 0 auto 0.5rem;
+        }
+        .timeline-era {
+            font-weight: 700;
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        .timeline-year {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .list-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+        .list-icon {
+            color: #3b82f6;
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .list-text {
+            font-size: 1rem;
+            color: #334155;
+            flex-grow: 1;
+        }
+        .emphasis {
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+        .page-number {
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="slide">
+<div class="title-section">
+<h1 class="title">4차 산업혁명의 본질과 도전 과제</h1>
+</div>
+<div class="content-section">
+<div class="column">
+<div class="card">
+<div class="card-header">
+<div class="icon-circle">
+<i class="fas fa-history"></i>
+</div>
+<h3 class="card-title">산업혁명의 역사와 4차 산업혁명</h3>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-era">1차</div>
+<div class="timeline-year">18세기</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-era">2차</div>
+<div class="timeline-year">20세기</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-era">3차</div>
+<div class="timeline-year">20세기 후반</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-era">4차</div>
+<div class="timeline-year">현재</div>
+</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-check"></i></div>
+<div class="list-text"><span class="emphasis">1차 산업혁명:</span> 증기기관 기반의 공장식 생산체제</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-check"></i></div>
+<div class="list-text"><span class="emphasis">2차 산업혁명:</span> 전기동력 기반의 대량생산 체제</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-check"></i></div>
+<div class="list-text"><span class="emphasis">3차 산업혁명:</span> 컴퓨팅 기술 기반의 자동화된 생산체제</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-check"></i></div>
+<div class="list-text"><span class="emphasis">4차 산업혁명:</span> 사물 인터넷, 빅데이터, 인공지능을 통한 초연결 시대</div>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card">
+<div class="card-header">
+<div class="icon-circle">
+<i class="fas fa-exclamation-triangle"></i>
+</div>
+<h3 class="card-title">도전 과제와 대응 방향</h3>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-briefcase"></i></div>
+<div class="list-text"><span class="emphasis">일자리 변화:</span> 기계에 의해 대체되는 일자리가 새롭게 창출되는 일자리보다 많을 것</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-chart-line"></i></div>
+<div class="list-text"><span class="emphasis">과잉공급:</span> 이미 과잉공급 시대에 접어든 시장에서 지속적 성장과 일자리 창출의 한계</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-lightbulb"></i></div>
+<div class="list-text"><span class="emphasis">패러다임 전환:</span> 닷새 일하고 이틀 쉬는 구조에서 이틀 일하고 닷새 쉬는 구조로의 전환 필요</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-balance-scale"></i></div>
+<div class="list-text"><span class="emphasis">공정한 분배:</span> 4차 산업혁명의 효익을 일부 기업이나 자본가들이 독점하지 않고 사회 구성원이 골고루 나누는 방식 모색</div>
+</div>
+<div class="list-item">
+<div class="list-icon"><i class="fas fa-users"></i></div>
+<div class="list-text"><span class="emphasis">실질적 문제 해결:</span> 4차 산업혁명 기술을 통해 현재 직면한 사회 문제를 해결하는 접근법 필요</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div></div>
+<div class="page-number">11 / 13</div>
+</div>
+</div>
+
+</body></html>
